@@ -1,0 +1,21 @@
+{{{headelement}}}
+		{{#banner}}<div style="border: solid 1px red;padding:10px;">{{.}}</div>{{/banner}}
+		<div>
+			{{#talk}}<a href="{{href}}" class="{{class}}">{{text}}</a>{{/talk}}
+			{{#history}}<a href="{{href}}" class="{{class}}">{{text}}</a>{{/history}}
+			{{#edit}}<a href="{{href}}" class="{{class}}">{{text}}</a>{{/edit}}
+		</div>
+		<nav>
+			<ul>
+				{{#sidebar}}
+				<li>
+					<a href="{{href}}" class="{{class}}">{{text}}</a>
+				</li>
+				{{/sidebar}}
+			</ul>
+		</nav>
+		<h1>{{{title}}}</h1>
+		{{{bodytext}}}
+	</body>
+	{{{bottomscripts}}}
+</html>
