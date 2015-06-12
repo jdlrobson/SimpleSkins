@@ -32,11 +32,13 @@ class SimpleSkinsHooks {
 				$name = $fileinfo->getFilename();
 				$rlModule = array(
 					"skins.bacadabra.$name.styles" => $wgSFResourceBoilerplate + array(
+						'position' => 'top',
 						'styles' => array(
 							"skins/$name/styles.css",
 						),
 					),
 					"skins.bacadabra.$name.scripts" => $wgSFResourceBoilerplate + array(
+						'position' => 'top',
 						'scripts' => array(
 							"skins/$name/init.js",
 						),
