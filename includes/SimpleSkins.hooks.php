@@ -50,6 +50,27 @@ class SimpleSkinsHooks {
 		return true;
 	}
 
+	protected static function registerAvailableSimpleSkins() {
+		$factory = SkinFactory::getDefaultInstance();
+		$dir = new DirectoryIterator( dirname( __FILE__ ) . '/../skins/' );
+		foreach ( $dir as $fileinfo ) {
+			if ( !$fileinfo->isDot() && $fileinfo->isDir() ) {
+				$skinName = $fileinfo->getFilename();
+				$skinKey = "bacadabra/" . strtolower( $skinName );
+				$factory->register( $skinKey, $skinName, function () use ( $skinKey ) {
+					$skin = new SkinBacadabra( $skinKey );
+					$skin->setSimpleSkinName( $parts[1] );
+					return $skin;
+				} );
+			}
+		}
+	}
+
+	public static function onSetupAfterCache() {
+		self::registerAvailableSimpleSkins();
+		return true;
+	}
+
 	/**
 	 * RequestContextCreateSkin hook handler
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/RequestContextCreateSkin

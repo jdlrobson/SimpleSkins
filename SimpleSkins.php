@@ -41,8 +41,6 @@ $wgSFResourceBoilerplate = array(
 	'remoteExtPath' => 'SimpleSkins',
 );
 
-$wgValidSkinNames['bacadabra'] = "Bacadabra";
-
 $wgHooks['SetupAfterCache'][] = 'SimpleSkinsHooks::onSetupAfterCache';
 $wgHooks['RequestContextCreateSkin'][] = 'SimpleSkinsHooks::onRequestContextCreateSkin';
 $wgHooks['ResourceLoaderRegisterModules'][] = 'SimpleSkinsHooks::onResourceLoaderRegisterModules';
