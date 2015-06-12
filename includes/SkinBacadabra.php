@@ -8,8 +8,7 @@ class SkinBacadabra extends SkinTemplate {
 	public $stylename = 'bacadabra';
 	public $template = 'SkinBacadabraTemplate';
 	public $useHeadElement = true;
-	// FIXME: Make variant configurable per user
-	protected $simpleSkin;
+	protected $simpleSkin = 'Simple';
 
 	/**
 	 * initialize various variables and generate the template
@@ -31,9 +30,14 @@ class SkinBacadabra extends SkinTemplate {
 		return $tpl;
 	}
 
-	public function __construct() {
-		global $wgSFDefaultSimpleSkin;
-		$this->simpleSkin = $wgSFDefaultSimpleSkin;
+	protected function skinExists( $name ) {
+		return file_exists( __DIR__ . "/../skins/$name" );
+	}
+
+	public function setSimpleSkinName( $name ) {
+		if ( $this->skinExists( $name ) ) {
+			$this->simpleSkin = $name;
+		}
 	}
 
 	public function getSimpleSkinName() {

@@ -59,8 +59,14 @@ class SimpleSkinsHooks {
 	 * @return bool
 	 */
 	public static function onRequestContextCreateSkin( $context, &$skin ) {
-		$skinName = 'SkinBacadabra';
-		$skin = new $skinName( $context );
+		$userSkin = $context->getUser()->getOption( 'skin' );
+		$userSkin = $context->getRequest()->getVal( 'useskin', $userSkin );
+		$parts = explode( '/', $userSkin );
+		if ( $parts[0] === 'bacadabra' ) {
+			$skinName = 'SkinBacadabra';
+			$skin = new $skinName( $context );
+			$skin->setSimpleSkinName( $parts[1] );
+		}
 		return false;
 	}
 }

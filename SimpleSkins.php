@@ -43,9 +43,6 @@ $wgSFResourceBoilerplate = array(
 
 $wgValidSkinNames['bacadabra'] = "Bacadabra";
 
+$wgHooks['SetupAfterCache'][] = 'SimpleSkinsHooks::onSetupAfterCache';
 $wgHooks['RequestContextCreateSkin'][] = 'SimpleSkinsHooks::onRequestContextCreateSkin';
 $wgHooks['ResourceLoaderRegisterModules'][] = 'SimpleSkinsHooks::onResourceLoaderRegisterModules';
-
-// FIXME: Make variant configurable per user
-$wgSFDefaultSimpleSkin = 'Simple';
-

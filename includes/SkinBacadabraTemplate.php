@@ -1,5 +1,7 @@
 <?php
 class SkinBacadabraTemplate extends BaseTemplate {
+	protected $simpleSkin;
+
 	/**
 	 * Template filter callback for Minerva skin.
 	 * Takes an associative array of data set from a SkinTemplate-based
@@ -9,13 +11,13 @@ class SkinBacadabraTemplate extends BaseTemplate {
 	 * @access private
 	 */
 	function execute() {
-		global $wgSFDefaultSimpleSkin;
-		$name = $wgSFDefaultSimpleSkin;
+		$sk = $this->getSkin();
+		$name = $sk->getSimpleSkinName();
 
-		$path = __DIR__ . '/../skins';
+		$path = __DIR__ . "/../skins/$name";
 		$templateParser = new TemplateParser( $path );
 		$data = $this->data;
-		$string = file_get_contents("$path/$name/config.json");
+		$string = file_get_contents("$path/config.json");
 		$tdata = json_decode( $string, true );
 
 		$tdata = array_merge( array(
@@ -37,6 +39,6 @@ class SkinBacadabraTemplate extends BaseTemplate {
 		if ( isset( $data['content_navigation']["actions"]["watch"] ) ) {
 			$tdata['unwatch'] = $data['content_navigation']["actions"]["watch"];
 		}
-		echo $templateParser->processTemplate( "$name/template", $tdata );
+		echo $templateParser->processTemplate( "template", $tdata );
 	}
 }
