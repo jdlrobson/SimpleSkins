@@ -8,8 +8,12 @@ class SkinBacadabra extends SkinTemplate {
 	public $stylename = 'bacadabra';
 	public $template = 'SkinBacadabraTemplate';
 	public $useHeadElement = true;
-	protected $simpleSkin = 'Simple';
+	protected $simpleSkin;
 
+	public function __construct() {
+		global $wgSimpleSkinDefault;
+		$this->simpleSkin = $wgSimpleSkinDefault;
+	}
 	/**
 	 * initialize various variables and generate the template
 	 * @return QuickTemplate

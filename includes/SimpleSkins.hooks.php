@@ -34,7 +34,7 @@ class SimpleSkinsHooks {
 					"skins.bacadabra.$name.styles" => $wgSFResourceBoilerplate + array(
 						'position' => 'top',
 						'styles' => array(
-							"skins/$name/styles.css",
+							"skins/$name/styles.less",
 						),
 					),
 					"skins.bacadabra.$name.scripts" => $wgSFResourceBoilerplate + array(
