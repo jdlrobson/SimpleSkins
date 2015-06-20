@@ -29,7 +29,7 @@ class SimpleSkinsHooks {
 		$dir = new DirectoryIterator( dirname( __FILE__ ) . '/../skins/' );
 		foreach ( $dir as $fileinfo ) {
 			if ( !$fileinfo->isDot() && $fileinfo->isDir() ) {
-				$name = $fileinfo->getFilename();
+				$name = strtolower( $fileinfo->getFilename() );
 				$rlModule = array(
 					"skins.bacadabra.$name.styles" => $wgSFResourceBoilerplate + array(
 						'position' => 'top',
