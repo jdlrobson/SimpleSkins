@@ -34,6 +34,17 @@ class SkinBacadabra extends SkinTemplate {
 		return $tpl;
 	}
 
+	public function getSimpleConfig() {
+		$path = __DIR__ . "/../skins/$this->simpleSkin";
+		if ( file_exists( "$path/config.json" ) ) {
+			$string = file_get_contents("$path/config.json");
+			$tdata = json_decode( $string, true );
+			return $tdata;
+		} else {
+			return array();
+		}
+	}
+
 	protected function skinExists( $name ) {
 		return file_exists( __DIR__ . "/../skins/$name" );
 	}
@@ -57,5 +68,9 @@ class SkinBacadabra extends SkinTemplate {
 		// Add the ResourceLoader module to the page output
 		$out->addModuleStyles( "skins.bacadabra.$name.styles" );
 		$out->addModules( "skins.bacadabra.$name.scripts" );
+		$config = $this->getSimpleConfig();
+		if ( isset( $config['styles'] ) ) {
+			$out->addModuleStyles( $config['styles'] );
+		}
 	}
 }

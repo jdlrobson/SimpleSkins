@@ -1,0 +1,144 @@
+{{{headelement}}}
+<div id="globalWrapper">
+	<div id="column-content">
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+			{{#sitenotice}}<div id="siteNotice"></div>{{/sitenotice}}
+			{{{indicators}}}
+			{{#if title}}{{! this is not valid mustache wtf}}
+			<h1 id="firstHeading"
+				class="firstHeading" lang="{{pageLanguage}}">{{{title}}}</h1>
+			{{/if}}
+			<div id="bodyContent" class="mw-body-content">
+				<div id="siteSub">{{tagline}}</div>
+					<div id="contentSub" {{{userlangattributes}}}>{{{subtitle}}}</div>
+					{{^undelete}}<div id="contentSub2">{{{undelete}}}</div>{{/undelete}}
+					{{#newtalk}}<div class="usermessage">{{{newtalk}}}</div>{{/newtalk}}
+					<div id="jump-to-nav" class="mw-jump">{{messages.jumpto}}
+						<a href="#column-one">{{messages.jumptonavigation}}</a>
+						{{messages.comma-separator}}
+						<a href="#searchInput">{{messages.jumptosearch}}</a>
+					</div>
+					<!-- start content -->
+					{{{bodytext}}}
+					{{#catlinks}}{{{catlinks}}}{{/catlinks}}
+					<!-- end content -->
+					{{#dataAfterContent}}{{{dataAfterContent}}}{{/dataAfterContent}}
+					<div class="visualClear"></div>
+				</div>
+			</div>
+		</div>
+		<div id="column-one" {{{userlangattributes}}}>
+			<h2>{{messages.navigation-heading}}</h2>
+			<div id="p-cactions" class="portlet" role="navigation">
+				<h3>{{messages.views}}</h3>
+
+				<div class="pBody">
+					<ul>
+						{{#namespaces}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/namespaces}}
+						{{#edit}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/edit}}
+						{{#history}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/history}}
+						{{#actions}}
+							{{#move}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/move}}
+							{{#watch}}<li id="{{id}}" class="{{class}}"><a href="{{href}}" >{{text}}</a></li>{{/watch}}
+							{{#delete}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/delete}}
+						{{/actions}}
+					</ul>
+					{{!<?php $this->renderAfterPortlet( 'cactions' ); ?>}}
+				</div>
+			</div>
+			
+			<div class="portlet" id="p-personal" role="navigation">
+				<h3>{{messages.personaltools}}</h3>
+				<div class="pBody">
+					<ul {{{userlangattributes}}}>
+						{{#personalUrls}}
+						<li id="pt-{{name}}">
+							<a href="{{href}}" class="{{class}}">{{text}}</a>
+						</li>
+						{{/personalUrls}}
+					</ul>
+				</div>
+			</div>
+			<div class="portlet" id="p-logo" role="banner">
+				<a href="{{nav_urls.mainpage.href}}" class="mw-wiki-logo"></a>
+				{{! Linker::tooltipAndAccesskeyAttribs( 'p-logo' )}}
+			</div>
+			<div class="generated-sidebar portlet" id="p-navigation" role="navigation">
+				<h3>{{messages.navigation}}</h3>
+				<div class="pBody">
+					<ul>
+						{{#sidebarPrimaryLinks}}
+						<li>
+							<a href="{{href}}" class="{{class}}">{{text}}</a>
+						</li>
+						{{/sidebarPrimaryLinks}}
+					</ul>
+				</div>
+			</div>
+			<div id="p-search" class="portlet" role="search">
+				<h3><label for="searchInput">{{messages.search}}</label></h3>
+
+				<div id="searchBody" class="pBody">
+					<form action="{{wgScript}}" id="searchform">
+						<input type='hidden' name="title" value="{{searchtitle}}"/>
+						{{{search.input}}}
+						{{{search.button}}}
+						{{{search.buttonfulltext}}}
+							<div><a href="{{searchaction}}" rel="search">{{messages.powersearch-legend}}</a></div>
+					</form>
+					{{! <?php $this->renderAfterPortlet( 'search' ); ?>}}
+				</div>
+			</div>
+			<div class="portlet" id="p-tb" role="navigation">
+				<h3>{{messages.toolbox}}</h3>
+				<div class="pBody">
+					<ul>
+						{{#toolboxUrls}}
+						<li>
+							<a href="{{href}}" class="{{class}}">{{text}}</a>
+						</li>
+						{{/toolboxUrls}}
+						{{!
+						wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
+						wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this, true ) );
+						}}
+					</ul>
+					{{! <?php $this->renderAfterPortlet( 'tb' ); ?>}}
+				</div>
+			</div>
+			{{#hasLanguages}}
+			<div id="p-lang" class="portlet" role="navigation">
+				<h3 {{{userlangattributes}}}>{{messages.otherlanguages}}</h3>
+				<div class="pBody">
+					<ul>
+						{{#languageUrls}}
+						<li>
+							<a href="{{href}}" class="{{class}}">{{text}}</a>
+						</li>
+						{{/languageUrls}}
+					</ul>
+					{{! <?php $this->renderAfterPortlet( 'lang' ); }}
+				</div>
+			</div>
+			{{/hasLanguages}}
+		</div><!-- end of the left (by default at least) column -->
+		<div class="visualClear"></div>
+		{{! TODO: Footer}}
+		<div id="footer" role="contentinfo" {{{userlangattributes}}}>
+			<div id="f-copyrightico">
+				{{{icons.copyright}}}
+			</div>
+			<div id="f-poweredbyico">
+				{{{icons.poweredby}}}
+			</div>
+			<div id="f-list">
+				{{#footerRows}}{{#.}}<span>{{{.}}}</span>{{/.}}{{/footerRows}}
+			</div>
+		</div>
+	</div>
+	{{{debug}}}
+	{{{bottomscripts}}}
+	{{{reporttime}}}
+</body>
+</html>

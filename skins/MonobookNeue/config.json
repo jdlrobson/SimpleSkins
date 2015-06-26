@@ -1,0 +1,15 @@
+{
+	"styles": [ "mediawiki.skinning.interface", "skins.monobook.styles" ],
+	"messages": [
+		"comma-separator",
+		"jumptonavigation",
+		"jumpto",
+		"jumptosearch",
+		"views",
+		"navigation-heading",
+		"personaltools",
+		"search",
+		"navigation",
+		"powersearch-legend"
+	]
+}

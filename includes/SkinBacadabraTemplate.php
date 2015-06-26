@@ -15,6 +15,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			if ( !isset( $val['text'] ) ) {
 				$val['text'] = wfMessage( explode( '-', $val['id'] )[1] )->text();
 			}
+			$val['name'] = $key;
 			$cleanedArray[] = $val;
 		}
 		return $cleanedArray;
@@ -35,12 +36,18 @@ class SkinBacadabraTemplate extends BaseTemplate {
 		$path = __DIR__ . "/../skins/$name";
 		$templateParser = new TemplateParser( $path );
 		$data = $this->data;
-		if ( file_exists( "$path/config.json" ) ) {
-			$string = file_get_contents("$path/config.json");
-			$tdata = json_decode( $string, true );
-		} else {
-			$tdata = array();
+		$tdata = $sk->getSimpleConfig();
+
+		$msgObj = array();
+		if ( isset( $tdata['messages'] ) ) {
+			foreach ( $tdata['messages'] as $msgKey ) {
+				$msgObj[$msgKey] = wfMessage( $msgKey )->text();
+			}
 		}
+		$tdata['messages'] = array_merge( $msgObj, array(
+			'toolbox' => wfMessage( 'toolbox' ),
+			'otherlanguages' => wfMessage( 'otherlanguages' ),
+		) );
 
 		$nav = $data['content_navigation'];
 		$namespaces = $nav['namespaces'];
@@ -68,33 +75,45 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			}
 			$footerRows[] = $row;
 		}
+
 		$tdata = array_merge( array(
 			'sitename' => $data['sitename'],
 			'namespaces' => array_values( $namespaces ),
 
+			// language
+			'userlangattributes' => $data['userlangattributes'],
+			'pageLanguage' => $this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode(),
+
 			'title' => $data['title'],
+			'indicators' => $this->getIndicators(),
+
 			'history' => isset( $views["history"] ) ? $views["history"] : false,
 			'edit' => isset( $views["edit"] ) ? $views["edit"] : false,
 			'actions' => $actions,
 
-			'messages' => array(
-				'toolbox' => wfMessage( 'toolbox' ),
-				'otherlanguages' => wfMessage( 'otherlanguages' ),
-			),
 			'footerRows' => $footerRows,
 
 			'personalUrls' => $personalUrls,
 			'languageUrls' => $data['language_urls'],
+			'hasLanguages' => count( $data['language_urls'] ) > 1,
 			'toolboxUrls' => $toolboxUrls,
 
 			'headelement' => $data['headelement'],
 			'sidebarPrimaryLinks' => $data['sidebar']['navigation'],
 			'bodytext' => $data['bodytext'],
+			'reporttime' => $data['reporttime'],
 			'bottomscripts' => $data['bottomscripts'],
+			'debug' => MWDebug::getDebugHTML( $this->getSkin()->getContext() ),
 			'icons' => array(
 				'poweredby' => $data['poweredbyico'],
 				'copyright' => $data['copyright'],
 			),
+
+			'search' => array(
+				'input' => $this->makeSearchInput( array( 'id' => 'searchInput' ) ),
+				'button' => $this->makeSearchButton( 'go', array( "id" => "searchGoButton", "class" => "searchButton" ) ),
+				'buttonfulltext' => $this->makeSearchButton( "fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" ) ),
+			)
 		), $tdata );
 
 		if ( isset( $data['content_navigation']["actions"]["unwatch"] ) ) {
