@@ -33,10 +33,10 @@
 		</nav>
 		<h1>{{{title}}}</h1>
 		<div class="container-dali">
-		{{{bodytext}}}
+			<a class="lastmodbar" href="{{history.href}}">{{history.info}}</a>
+			<div class="content">{{{bodytext}}}</div>
 		</div>
-		<hr>
-		<div>
+		<div class="actions">
 			{{#namespaces}}<a href="{{href}}" class="{{class}}">{{text}}</a> {{/namespaces}}
 			<hr>
 			{{#edit}}<a href="{{href}}" class="{{class}}">{{text}}</a>{{/edit}}

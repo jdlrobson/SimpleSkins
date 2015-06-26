@@ -76,6 +76,11 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			$footerRows[] = $row;
 		}
 
+		$historyLink = isset( $views["history"] ) ? $views["history"] : false;
+		if ( $historyLink ) {
+			$historyLink["info"] = $data['lastmod'];
+		}
+
 		$tdata = array_merge( array(
 			'sitename' => $data['sitename'],
 			'namespaces' => array_values( $namespaces ),
@@ -87,7 +92,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			'title' => $data['title'],
 			'indicators' => $this->getIndicators(),
 
-			'history' => isset( $views["history"] ) ? $views["history"] : false,
+			'history' => $historyLink,
 			'edit' => isset( $views["edit"] ) ? $views["edit"] : false,
 			'actions' => $actions,
 
