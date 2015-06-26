@@ -5,18 +5,24 @@ class SkinBacadabraTemplate extends BaseTemplate {
 	protected function prepareLinksForTemplate( $array ) {
 		$cleanedArray = array();
 		foreach ( $array as $key => $val ) {
-			if ( isset( $val['msg'] ) ) {
-				$val['text'] = wfMessage( $val['msg'] )->text();
+			if ( is_array( $val ) && !isset( $val['links'] ) ){
+				if ( isset( $val['msg'] ) ) {
+					$val['text'] = wfMessage( $val['msg'] )->text();
+				}
+				if ( isset( $val['class'] ) && is_array( $val['class'] ) ) {
+					$val['class'] = implode( ' ', $val['class'] );
+				}
+				// This is horrible - but needed for Whatlinks here
+				if ( !isset( $val['text'] ) && isset( $val['id'] ) ) {
+					$parts = explode( '-', $val['id'] );
+					if ( isset( $parts[1] ) ) {
+						$key = $parts[1];
+						$val['text'] = wfMessage( $key )->text();
+					}
+				}
+				$val['name'] = $key;
+				$cleanedArray[] = $val;
 			}
-			if ( isset( $val['class'] ) && is_array( $val['class'] ) ) {
-				$val['class'] = implode( ' ', $val['class'] );
-			}
-			// This is horrible - but needed for Whatlinks here
-			if ( !isset( $val['text'] ) ) {
-				$val['text'] = wfMessage( explode( '-', $val['id'] )[1] )->text();
-			}
-			$val['name'] = $key;
-			$cleanedArray[] = $val;
 		}
 		return $cleanedArray;
 	}
