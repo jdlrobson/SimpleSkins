@@ -113,6 +113,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 		$tdata = array_merge( array(
 			'sitename' => $data['sitename'],
 			'namespaces' => array_values( $namespaces ),
+			'wgScript' => $data['wgScript'],
 
 			// language
 			'userlangattributes' => $data['userlangattributes'],
