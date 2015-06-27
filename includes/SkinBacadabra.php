@@ -72,5 +72,8 @@ class SkinBacadabra extends SkinTemplate {
 		if ( isset( $config['styles'] ) ) {
 			$out->addModuleStyles( $config['styles'] );
 		}
+		if ( isset( $config['scripts'] ) ) {
+			$out->addModules( $config['scripts'] );
+		}
 	}
 }
