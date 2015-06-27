@@ -83,8 +83,24 @@ class SkinBacadabraTemplate extends BaseTemplate {
 		}
 
 		$historyLink = isset( $views["history"] ) ? $views["history"] : false;
+		$title = $this->getSkin()->getTitle();
+		$pageLanguage = $title->getPageViewLanguage();
+
 		if ( $historyLink ) {
+			$revId = $this->getSkin()->getRevisionId();
+			$timestamp = Revision::getTimestampFromId( $title, $revId );
+			$rev = Revision::newFromId( $revId );
+			$userId = $rev->getUser();
+
 			$historyLink["info"] = $data['lastmod'];
+			$historyLink["edit-timestamp"] = wfTimestamp( TS_UNIX, $timestamp );
+
+			if ( $userId ) {
+				$revUser = User::newFromId( $userId );
+				$revUser->load( User::READ_NORMAL );
+				$historyLink["editor-username"] = $revUser->getName();
+				$historyLink["editor-gender"] = $revUser->getOption( 'gender' );
+			}
 		}
 
 		$tdata = array_merge( array(
@@ -93,9 +109,15 @@ class SkinBacadabraTemplate extends BaseTemplate {
 
 			// language
 			'userlangattributes' => $data['userlangattributes'],
-			'pageLanguage' => $this->getSkin()->getTitle()->getPageViewLanguage()->getHtmlCode(),
+			'page' => array(
+				'displayTitle' => $data['title'],
+				'isMainPage' => $title->isMainPage(),
+				'language' => array(
+					'code' => $pageLanguage->getHtmlCode(),
+					'dir' => $pageLanguage->getDir(),
+				),
+			),
 
-			'title' => $data['title'],
 			'indicators' => $this->getIndicators(),
 
 			'history' => $historyLink,
