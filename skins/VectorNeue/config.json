@@ -1,0 +1,13 @@
+{
+	"styles": [ "mediawiki.skinning.interface", "skins.vector.styles" ],
+	"messages": [
+		"tagline",
+		"jumptonavigation",
+		"jumptosearch",
+		"navigation-heading",
+		"comma-separator",
+		"jumpto",
+		"vector-view-history",
+		"search"
+	]
+}

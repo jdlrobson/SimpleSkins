@@ -1,0 +1,146 @@
+{{{SKIN_START}}}
+<div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	{{#sitenotice}}<div id="siteNotice">{{{sitenotice}}}</div>{{/sitenotice}}
+	{{{indicators}}}
+	{{#if page.displayTitle}}{{! this is not valid mustache wtf}}
+	<h1 id="firstHeading"
+		class="firstHeading" lang="{{page.language.code}}">{{{page.displayTitle}}}</h1>
+	{{/if}}
+	<div id="bodyContent" class="mw-body-content">
+	{{#page.isArticle}}
+		<div id="siteSub">{{messages.tagline}}</div>
+	{{/page.isArticle}}
+	<div id="contentSub" {{{userlangattributes}}}>
+		{{{subtitle}}}
+	</div>
+	{{#restore}}
+		<div id="contentSub2">{{{title}}}</div>
+	{{/restore}}
+	{{! div class="usermessage">$this->html( 'newtalk' )</div> }}
+	<div id="jump-to-nav" class="mw-jump">
+		{{messages.jumpto}}
+		<a href="#mw-head">
+			{{messages.jumptonavigation}}
+		</a>{{messages.comma-separator}}
+		<a href="#p-search">{{messages.jumptosearch}}</a>
+	</div>
+	{{{bodytext}}}
+	{{#page.categories}}
+	<div id="catlinks" class="catlinks{{#allHidden}} catlinks-allhidden{{/allHidden}}">
+		{{#link}}<a href="{{href}}">{{text}}</a>: {{/link}}
+		<ul id="mw-normal-catlinks" class="mw-normal-catlinks">
+			{{#normal}}
+			<li>{{{.}}}</li>
+			{{/normal}}
+		</ul>
+		<ul id="mw-hidden-catlinks" class="mw-hidden-catlinks">
+			{{#hidden}}
+			<li>{{{.}}}</li>
+			{{/hidden}}
+		</ul>
+	</div>
+	{{/page.categories}}
+	{{{dataAfterContent}}}
+	<div class="visualClear"></div>
+</div>
+</div>
+<div id="mw-navigation">
+<h2>{{messages.navigation-heading}}</h2>
+
+<div id="mw-head">
+	<div id="left-navigation">
+			<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+				<h3 id="p-namespaces-label">Namespaces</h3>
+				<ul>
+					{{#namespaces}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/namespaces}}
+				</ul>
+			</div>
+		{{! $this->renderNavigation( array( 'VARIANTS' ) ); }}
+	</div>
+	<div id="right-navigation">
+		<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+			<h3 id="p-views-label">Views</h3>
+			<ul>
+				{{#view}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/view}}
+				{{#edit}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/edit}}
+				{{^page.isSpecialPage}}<li id="{{history.id}}" class="{{history.class}}"
+					><span><a href="{{history.href}}">{{messages.vector-view-history}}</a></span></li>{{/page.isSpecialPage}}
+				{{#actions.watch}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}" >{{text}}</a></span></li>{{/actions.watch}}
+			</ul>
+		</div>
+		{{#page.exists}}
+		<div id="p-cactions" role="navigation" class="vectorMenu" aria-labelledby="p-cactions-label">
+			<h3 id="p-cactions-label" tabindex="0"><span>More</span><a href="#" tabindex="-1"></a></h3>
+			<div class="menu">
+				<ul>
+					{{#move}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/move}}
+					{{#delete}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/delete}}
+				</ul>
+			</div>
+		</div>
+		{{/page.exists}}
+		<div id="p-search" role="search">
+			<h3>
+				<label for="searchInput">{{messages.search}}</label>
+			</h3>
+
+			<form action="{{search.action}}" id="searchform">
+				<div id="simpleSearch">
+					<input type='hidden' name="title" value="{{searchtitle}}"/>
+					{{{search.input}}}
+					{{{search.buttonfulltext}}}
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div id="mw-panel">
+	<div id="p-logo" role="banner">
+		{{#site.links.mainpage}}
+		<a class="mw-wiki-logo" href="{{href}}"
+			{{! Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) }}></a>
+		{{/site.links.mainpage}}
+	</div>
+	<div class="portal" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+		<h3>{{messages.navigation}}</h3>
+		<div class="body">
+			<ul>
+				{{#sidebarPrimaryLinks}}
+				<li id="{{id}}">
+					<a href="{{href}}" class="{{class}}">{{text}}</a>
+				</li>
+				{{/sidebarPrimaryLinks}}
+			</ul>
+		</div>
+	</div>
+	<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+		<h3 id="p-tb-label">{{messages.toolbox}}</h3>
+		<div class="body">
+			<ul>
+				{{#toolboxUrls}}
+				<li>
+					<a href="{{href}}" class="{{class}}">{{text}}</a>
+				</li>
+				{{/toolboxUrls}}
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="footer" role="contentinfo"{{{userlangattributes}}}>
+	<div id="f-list">
+		{{#footerRows}}{{#.}}<span>{{{.}}}</span>{{/.}}{{/footerRows}}
+	</div>
+	<ul id="footer-icons" class="noprint">
+		<li id="f-copyrightico">
+			{{{site.copyright}}}
+		</li>
+		<li id="f-poweredbyico">
+			{{{site.poweredby}}}
+		</li>
+	</ul>
+	<div style="clear:both"></div>
+</div>
+{{{SKIN_END}}}
