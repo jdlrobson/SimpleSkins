@@ -1,4 +1,5 @@
 <?php
+
 class SkinBacadabraTemplate extends BaseTemplate {
 	protected $simpleSkin;
 
@@ -21,6 +22,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 					}
 				}
 				$val['name'] = $key;
+
 				$cleanedArray[] = $val;
 			}
 		}
@@ -149,7 +151,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			),
 
 			'search' => array(
-				'input' => $this->makeSearchInput( array( 'id' => 'searchInput' ) ),
+				'input' => $this->makeSearchInput( array( 'id' => 'searchInput', 'class' => 'search' ) ),
 				'button' => $this->makeSearchButton( 'go', array( "id" => "searchGoButton", "class" => "searchButton" ) ),
 				'buttonfulltext' => $this->makeSearchButton( "fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" ) ),
 			)
