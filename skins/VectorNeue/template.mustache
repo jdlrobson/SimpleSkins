@@ -1,0 +1,94 @@
+{{{headelement}}}
+<div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	{{#sitenotice}}<div id="siteNotice">{{{sitenotice}}}</div>{{/sitenotice}}
+	{{{indicators}}}
+	{{#if page.displayTitle}}{{! this is not valid mustache wtf}}
+	<h1 id="firstHeading"
+		class="firstHeading" lang="{{page.language.code}}">{{{page.displayTitle}}}</h1>
+	{{/if}}
+	{{! {{! $this->html( 'prebodyhtml' ) }}
+	<div id="bodyContent" class="mw-body-content">
+	{{#page.isArticle}}
+		<div id="siteSub">{{messages.tagline}}</div>
+	{{/page.isArticle}}
+	<div id="contentSub" {{{userlangattributes}}}>
+		{{{subtitle}}}
+	</div>
+	{{!
+	if ( $this->data['undelete'] ) {
+		}}
+		{{!<div id="contentSub2"> $this->html( 'undelete' ) </div>}}
+	{{!
+	if ( $this->data['newtalk'] ) {
+		<div class="usermessage">$this->html( 'newtalk' )</div>
+	}}
+	<div id="jump-to-nav" class="mw-jump">
+		{{messages.jumpto}}
+		<a href="#mw-head">
+			{{messages.jumptonavigation}}
+		</a>{{messages.comma-separator}}
+		<a href="#p-search">{{messages.jumptosearch}}</a>
+	</div>
+	{{{bodytext}}}
+	{{!
+
+	if ( $this->data['printfooter'] ) {
+		}}
+		<div class="printfooter">
+			{{! $this->html( 'printfooter' ); }}
+		</div>
+	{{!
+	}
+
+	if ( $this->data['catlinks'] ) {
+		$this->html( 'catlinks' );
+	}
+
+	if ( $this->data['dataAfterContent'] ) {
+		$this->html( 'dataAfterContent' );
+	}
+	}}
+	<div class="visualClear"></div>
+</div>
+</div>
+<div id="mw-navigation">
+<h2>{{messages.navigation-heading}}</h2>
+
+<div id="mw-head">
+	{{! $this->renderNavigation( 'PERSONAL' ); }}
+	<div id="left-navigation">
+		{{! $this->renderNavigation( array( 'NAMESPACES', 'VARIANTS' ) ); }}
+	</div>
+	<div id="right-navigation">
+		{{! $this->renderNavigation( array( 'VIEWS', 'ACTIONS', 'SEARCH' ) ); }}
+	</div>
+</div>
+<div id="mw-panel">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="{{nav_urls.mainpage.href}}"
+			{{! Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) }}></a></div>
+	{{! $this->renderPortals( $this->data['sidebar'] ); }}
+</div>
+</div>
+<div id="footer" role="contentinfo"{{{userlangattributes}}}>
+	<div id="f-list">
+		{{#footerRows}}{{#.}}<span>{{{.}}}</span>{{/.}}{{/footerRows}}
+	</div>
+	<ul id="footer-icons" class="noprint">
+		<li id="f-copyrightico">
+			{{{icons.copyright}}}
+		</li>
+		<li id="f-poweredbyico">
+			{{{icons.poweredby}}}
+		</li>
+	</ul>
+	<div style="clear:both"></div>
+</div>
+{{{debug}}}
+{{{bottomscripts}}}
+{{{reporttime}}}
+</body>
+</html>
