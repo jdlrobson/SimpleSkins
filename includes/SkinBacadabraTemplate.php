@@ -118,6 +118,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 					'dir' => $pageLanguage->getDir(),
 				),
 			),
+			'subtitle' => $data['subtitle'],
 
 			'indicators' => $this->getIndicators(),
 
