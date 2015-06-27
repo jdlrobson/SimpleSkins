@@ -17,6 +17,8 @@ class SimpleSkinsHooks {
 		if ( method_exists( $skin, 'getSimpleConfig' ) ) {
 			$config = $skin->getSimpleConfig();
 			$version = isset( $config['version'] ) ? $config['version'] : 1;
+		} else {
+			$version = 1;
 		}
 		if ( $version > 1 ) {
 			$out->setProperty( 'simple-skin-toc', $po->getTOCHTML() );
