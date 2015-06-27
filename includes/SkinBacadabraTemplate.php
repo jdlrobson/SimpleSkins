@@ -112,6 +112,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			'page' => array(
 				'displayTitle' => $data['title'],
 				'isMainPage' => $title->isMainPage(),
+				'isSpecialPage' => $title->isSpecialPage(),
 				'language' => array(
 					'code' => $pageLanguage->getHtmlCode(),
 					'dir' => $pageLanguage->getDir(),
