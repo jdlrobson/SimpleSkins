@@ -90,11 +90,15 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			$revId = $this->getSkin()->getRevisionId();
 			$timestamp = Revision::getTimestampFromId( $title, $revId );
 			$rev = Revision::newFromId( $revId );
-			$userId = $rev->getUser();
 
 			$historyLink["info"] = $data['lastmod'];
 			$historyLink["edit-timestamp"] = wfTimestamp( TS_UNIX, $timestamp );
 
+			if ( $rev ) {
+				$userId = $rev->getUser();
+			} else {
+				$userId = false;
+			}
 			if ( $userId ) {
 				$revUser = User::newFromId( $userId );
 				$revUser->load( User::READ_NORMAL );
