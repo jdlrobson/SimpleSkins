@@ -43,6 +43,7 @@ $wgSFResourceBoilerplate = array(
 
 $wgSimpleSkinDefault = 'Dali';
 
+$wgHooks['OutputPageParserOutput'][] = 'SimpleSkinsHooks::onOutputPageParserOutput';
 $wgHooks['SetupAfterCache'][] = 'SimpleSkinsHooks::onSetupAfterCache';
 $wgHooks['RequestContextCreateSkin'][] = 'SimpleSkinsHooks::onRequestContextCreateSkin';
 $wgHooks['ResourceLoaderRegisterModules'][] = 'SimpleSkinsHooks::onResourceLoaderRegisterModules';

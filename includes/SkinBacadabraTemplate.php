@@ -39,6 +39,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 	 */
 	function execute() {
 		$sk = $this->getSkin();
+		$out = $sk->getOutput();
 		$name = $sk->getSimpleSkinName();
 
 		$path = __DIR__ . "/../skins/$name";
@@ -123,6 +124,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 					'code' => $pageLanguage->getHtmlCode(),
 					'dir' => $pageLanguage->getDir(),
 				),
+				'toc' => $out->getProperty( 'simple-skin-toc' ),
 			),
 			'subtitle' => $data['subtitle'],
 

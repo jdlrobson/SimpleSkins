@@ -12,6 +12,17 @@
  *	onRequestContextCreateSkin()
  */
 class SimpleSkinsHooks {
+	public static function onOutputPageParserOutput( OutputPage &$out, ParserOutput $po ) {
+		$skin = $out->getSkin();
+		if ( method_exists( $skin, 'getSimpleConfig' ) ) {
+			$config = $skin->getSimpleConfig();
+			$version = isset( $config['version'] ) ? $config['version'] : 1;
+		}
+		if ( $version > 1 ) {
+			$out->setProperty( 'simple-skin-toc', $po->getTOCHTML() );
+			$out->enableTOC( false );
+		}
+	}
 	/**
 	 * ResourceLoaderRegisterModules hook handler
 	 *
