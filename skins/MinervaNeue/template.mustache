@@ -1,0 +1,96 @@
+{{{headelement}}}
+<div id="mw-mf-viewport">
+	<nav id="mw-mf-page-left" class="navigation-drawer view-border-box">
+		<div class="menu">
+			{{! fixme i do not work}}
+			<ul>
+				{{#sidebarPrimaryLinks}}
+				<li class="{{class}}">
+					<a href="{{href}}" class="{{class}}">{{text}}</a>
+				</li>
+				{{/sidebarPrimaryLinks}}
+			</ul>
+			<ul>
+				{{#personalUrls}}
+				<li class="{{class}}">
+					<a href="{{href}}" class="{{class}}">{{text}}</a>
+				</li>
+				{{/personalUrls}}
+			</ul>
+			<ul class="hlist">
+				{{#sitelinks}}
+					<li class="{{class}}">
+						{{#components}}
+							<a href="{{href}}" class="{{class}}" data-event-name="{{data-event-name}}">{{text}}</a>
+						{{/components}}
+					</li>
+				{{/sitelinks}}
+			</ul>
+		</div>
+	</nav>
+	<div id="mw-mf-page-center">
+		<div class="header">
+			<div>
+				{{! fixme: make this work without JavaScript}}
+				<a href="#"
+					class="mw-ui-icon mw-ui-icon-element mw-ui-icon-mainmenu main-menu-button">
+					{{message.mobile-frontend-main-menu-button-tooltip}}
+				</a>
+			</div>
+			<form class="search-box" action="{{wgScript}}">
+				{{{search.input}}}
+				{{{search.buttonfulltext}}}
+			</form>
+			<div>{{{secondaryButton}}}</div>
+		</div>
+		<div id="content_wrapper">
+			{{^page.isSpecialPage}}
+			<div{{^page.isMainPage}} class="last-modified-bar"{{/page.isMainPage}}>
+				<div id="mw-mf-last-modified" class="truncated-text pre-content">
+					<a href="{{history.href}}"
+						data-user-name="{{history.editor-username}}"
+						{{^page.isMainPage}}data-timestamp="{{history.edit-timestamp}}"{{/page.isMainPage}}
+						data-user-gender="{{history.editor-username}}"
+						>{{history.info}}</a>
+				</div>
+			</div>
+			{{/page.isSpecialPage}}
+			<script>
+				if ( window.mw && mw.mobileFrontend ) {
+					mw.mobileFrontend.emit( 'history-link-loaded' );
+					mw.mobileFrontend.emit( 'header-loaded' );
+				}
+			</script>
+			<div class="pre-content">
+				{{#if page.displayTitle}}{{! this is not valid mustache wtf}}
+				<h1 id="firstHeading"
+					class="firstHeading" lang="{{page.language.code}}">{{{page.displayTitle}}}</h1>
+				{{/if}}
+				{{#if subtitle}}
+				<div class="warningbox">
+					{{{subtitle}}}
+				</div>
+				{{/if}}
+				{{^page.isSpecialPage}}
+				<ul id="page-actions" class="hlist">
+					{{#edit}}<li id="{{id}}" class="{{class}} mw-ui-icon mw-ui-icon-element mw-ui-icon-edit-enabled"><a href="{{href}}">{{text}}</a></li>{{/edit}}
+					{{#actions.watch}}<li id="{{id}}" class="{{class}} watch-this-article"></li>{{/actions.watch}}
+				</ul>
+				{{/page.isSpecialPage}}
+			</div>
+			<div id="content" class="content mw-content-{{pageDir}}" lang="{{page.language.code}}" dir="{{page.language.dir}}">
+				{{{bodytext}}}
+				{{^page.isSpecialPage}}
+				<div id="page-secondary-actions">
+					{{#namespaces}}<a href="{{href}}" data-title="{{page}}" class="mw-ui-button button {{class}}">{{text}}</a> {{/namespaces}}
+					<a href="" class="mw-ui-button button {{languageSelector}}">{{messages.mobile-frontend-language-article-heading}}</a>
+				</div>
+				{{/page.isSpecialPage}}
+		</div>
+		<div id="footer">
+			{{#footerRows}}{{#.}}<div>{{{.}}}</div>{{/.}}{{/footerRows}}
+		</div>
+	</div>
+</div>
+{{{bottomscripts}}}
+{{{reporttime}}}
