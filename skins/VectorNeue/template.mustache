@@ -60,18 +60,56 @@
 <div id="mw-head">
 	{{! $this->renderNavigation( 'PERSONAL' ); }}
 	<div id="left-navigation">
-		{{! $this->renderNavigation( array( 'NAMESPACES', 'VARIANTS' ) ); }}
+			<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+				<h3 id="p-namespaces-label">Namespaces</h3>
+				<ul>
+					{{#namespaces}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/namespaces}}
+				</ul>
+				{{!<?php $this->renderAfterPortlet( 'cactions' ); ?>}}
+			</div>
+		</div>
+		{{! $this->renderNavigation( array( 'VARIANTS' ) ); }}
 	</div>
 	<div id="right-navigation">
-		{{! $this->renderNavigation( array( 'VIEWS', 'ACTIONS', 'SEARCH' ) ); }}
+		<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+			<h3 id="p-views-label">Views</h3>
+			<ul>
+				{{#view}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/view}}
+				{{#edit}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/edit}}
+				{{#history}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/history}}
+				{{#actions.watch}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}" >{{text}}</a></span></li>{{/actions.watch}}
+			</ul>
+		</div>
+		<div id="p-cactions" role="navigation" class="vectorMenu" aria-labelledby="p-cactions-label">
+			<h3 id="p-cactions-label" tabindex="0"><span>More</span><a href="#" tabindex="-1"></a></h3>
+			<div class="menu">
+				<ul>
+					{{#actions.move}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/actions.move}}
+					{{#actions.delete}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/actions.delete}}
+				</ul>
+			</div>
+		</div>
+		<div id="p-search" role="search">
+			<h3>
+				<label for="searchInput">{{messages.search}}</label>
+			</h3>
+
+			<form action="{{wgScript}}" id="searchform">
+				<div id="simpleSearch">
+					<input type='hidden' name="title" value="{{searchtitle}}"/>
+					{{{search.input}}}
+					{{{search.buttonfulltext}}}
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
 <div id="mw-panel">
 	<div id="p-logo" role="banner">
 		<a class="mw-wiki-logo" href="{{nav_urls.mainpage.href}}"
-			{{! Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) }}></a></div>
+			{{! Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) }}></a>
+	</div>
 	{{! $this->renderPortals( $this->data['sidebar'] ); }}
-</div>
 </div>
 <div id="footer" role="contentinfo"{{{userlangattributes}}}>
 	<div id="f-list">

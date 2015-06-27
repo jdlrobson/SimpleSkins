@@ -119,6 +119,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			'userlangattributes' => $data['userlangattributes'],
 			'page' => array(
 				'displayTitle' => $data['title'],
+				'isArticle' => $out->isArticle(),
 				'isMainPage' => $title->isMainPage(),
 				'isSpecialPage' => $title->isSpecialPage(),
 				'language' => array(
