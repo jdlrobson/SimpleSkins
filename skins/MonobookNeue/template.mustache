@@ -107,7 +107,7 @@
 					{{! <?php $this->renderAfterPortlet( 'tb' ); ?>}}
 				</div>
 			</div>
-			{{#hasLanguages}}
+			{{#page.hasLanguages}}
 			<div id="p-lang" class="portlet" role="navigation">
 				<h3 {{{userlangattributes}}}>{{messages.otherlanguages}}</h3>
 				<div class="pBody">
@@ -121,7 +121,7 @@
 					{{! <?php $this->renderAfterPortlet( 'lang' ); }}
 				</div>
 			</div>
-			{{/hasLanguages}}
+			{{/page.hasLanguages}}
 		</div><!-- end of the left (by default at least) column -->
 		<div class="visualClear"></div>
 		{{! TODO: Footer}}

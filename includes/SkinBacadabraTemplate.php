@@ -124,6 +124,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 					'code' => $pageLanguage->getHtmlCode(),
 					'dir' => $pageLanguage->getDir(),
 				),
+				'hasLanguages' => count( $data['language_urls'] ) > 1,
 				'toc' => $out->getProperty( 'simple-skin-toc' ),
 			),
 			'subtitle' => $data['subtitle'],
@@ -138,7 +139,6 @@ class SkinBacadabraTemplate extends BaseTemplate {
 
 			'personalUrls' => $personalUrls,
 			'languageUrls' => $data['language_urls'],
-			'hasLanguages' => count( $data['language_urls'] ) > 1,
 			'toolboxUrls' => $toolboxUrls,
 
 			'headelement' => $data['headelement'],
