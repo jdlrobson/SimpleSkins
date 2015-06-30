@@ -161,6 +161,15 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			)
 		), $tdata );
 
+		$undelete = $sk->getUndeleteLink();
+		if ( $undelete ) {
+			$tdata['restore'] = array(
+				'title' => $undelete,
+				'text' => wfMessage( 'undeletebtn' ),
+				'href' => SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedDBkey() )->getLocalUrl(),
+			);
+		}
+
 		if ( isset( $data['content_navigation']["actions"]["unwatch"] ) ) {
 			$tdata['unwatch'] = $data['content_navigation']["actions"]["unwatch"];
 		}
