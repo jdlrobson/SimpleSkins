@@ -146,12 +146,11 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			'languageUrls' => $data['language_urls'],
 			'toolboxUrls' => $toolboxUrls,
 
-			'headelement' => $data['headelement'],
+			'SKIN_START' => $data['headelement'],
 			'sidebarPrimaryLinks' => $data['sidebar']['navigation'],
 			'bodytext' => $data['bodytext'],
-			'reporttime' => $data['reporttime'],
-			'bottomscripts' => $data['bottomscripts'],
-			'debug' => MWDebug::getDebugHTML( $this->getSkin()->getContext() ),
+			'SKIN_END' => MWDebug::getDebugHTML( $sk->getContext() ) .
+					$data['bottomscripts'] . $data['reporttime'] . '</body></html>',
 			'icons' => array(
 				'poweredby' => $data['poweredbyico'],
 				'copyright' => $data['copyright'],
