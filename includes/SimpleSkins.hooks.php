@@ -64,17 +64,20 @@ class SimpleSkinsHooks {
 	}
 
 	protected static function registerAvailableSimpleSkins() {
+		global $wgValidSkinNames;
 		$factory = SkinFactory::getDefaultInstance();
 		$dir = new DirectoryIterator( dirname( __FILE__ ) . '/../skins/' );
 		foreach ( $dir as $fileinfo ) {
 			if ( !$fileinfo->isDot() && $fileinfo->isDir() ) {
 				$skinName = $fileinfo->getFilename();
-				$skinKey = "bacadabra/" . strtolower( $skinName );
-				$factory->register( $skinKey, $skinName, function () use ( $skinKey ) {
-					$skin = new SkinBacadabra( $skinKey );
-					$skin->setSimpleSkinName( $parts[1] );
-					return $skin;
-				} );
+				$skinKey = strtolower( $skinName );
+				if ( !isset( $wgValidSkinNames[$skinKey] ) ) {
+					$factory->register( $skinKey, $skinName, function () use ( $skinKey ) {
+						$skin = new SkinBacadabra( $skinKey );
+						$skin->setSimpleSkinName( $skinKey );
+						return $skin;
+					} );
+				}
 			}
 		}
 	}
