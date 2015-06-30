@@ -114,7 +114,6 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			$title->getNamespace() == NS_CATEGORY;
 
 		$tdata = array_merge( $actions, array(
-			'sitename' => $data['sitename'],
 			'namespaces' => array_values( $namespaces ),
 
 			// language
@@ -151,7 +150,11 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			'bodytext' => $data['bodytext'],
 			'SKIN_END' => MWDebug::getDebugHTML( $sk->getContext() ) .
 					$data['bottomscripts'] . $data['reporttime'] . '</body></html>',
-			'icons' => array(
+			'site' => array(
+				'links' => array(
+					'mainpage' => $data['nav_urls']['mainpage'],
+				),
+				'name' => $data['sitename'],
 				'poweredby' => $data['poweredbyico'],
 				'copyright' => $data['copyright'],
 			),

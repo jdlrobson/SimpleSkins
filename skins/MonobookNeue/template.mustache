@@ -73,7 +73,7 @@
 				</div>
 			</div>
 			<div class="portlet" id="p-logo" role="banner">
-				<a href="{{nav_urls.mainpage.href}}" class="mw-wiki-logo"></a>
+				{{#site.links.mainpage}}<a href="{{href}}" class="mw-wiki-logo"></a>{{/site.links.mainpage}}
 				{{! Linker::tooltipAndAccesskeyAttribs( 'p-logo' )}}
 			</div>
 			<div class="generated-sidebar portlet" id="p-navigation" role="navigation">
@@ -139,10 +139,10 @@
 		{{! TODO: Footer}}
 		<div id="footer" role="contentinfo" {{{userlangattributes}}}>
 			<div id="f-copyrightico">
-				{{{icons.copyright}}}
+				{{{site.copyright}}}
 			</div>
 			<div id="f-poweredbyico">
-				{{{icons.poweredby}}}
+				{{{site.poweredby}}}
 			</div>
 			<div id="f-list">
 				{{#footerRows}}{{#.}}<span>{{{.}}}</span>{{/.}}{{/footerRows}}
