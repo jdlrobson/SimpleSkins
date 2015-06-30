@@ -21,7 +21,21 @@
 					</div>
 					<!-- start content -->
 					{{{bodytext}}}
-					{{#catlinks}}{{{catlinks}}}{{/catlinks}}
+					{{#page.categories}}
+					<div id="catlinks" class="catlinks{{#allHidden}} catlinks-allhidden{{/allHidden}}">
+						{{#link}}<a href="{{href}}">{{text}}</a>: {{/link}}
+						<ul id="mw-normal-catlinks" class="mw-normal-catlinks">
+							{{#normal}}
+							<li>{{{.}}}</li>
+							{{/normal}}
+						</ul>
+						<ul id="mw-hidden-catlinks" class="mw-hidden-catlinks">
+							{{#hidden}}
+							<li>{{{.}}}</li>
+							{{/hidden}}
+						</ul>
+					</div>
+					{{/page.categories}}
 					<!-- end content -->
 					{{#dataAfterContent}}{{{dataAfterContent}}}{{/dataAfterContent}}
 					<div class="visualClear"></div>

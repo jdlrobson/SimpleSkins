@@ -20,6 +20,7 @@ class SimpleSkinsHooks {
 		} else {
 			$version = 1;
 		}
+
 		if ( $version > 1 ) {
 			$out->setProperty( 'simple-skin-toc', $po->getTOCHTML() );
 			$out->enableTOC( false );

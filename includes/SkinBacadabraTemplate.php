@@ -110,6 +110,9 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			}
 		}
 
+		$showHidden = $sk->getUser()->getBoolOption( 'showhiddencats' ) ||
+			$title->getNamespace() == NS_CATEGORY;
+
 		$tdata = array_merge( array(
 			'sitename' => $data['sitename'],
 			'namespaces' => array_values( $namespaces ),
@@ -162,6 +165,18 @@ class SkinBacadabraTemplate extends BaseTemplate {
 				'buttonfulltext' => $this->makeSearchButton( "fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" ) ),
 			)
 		), $tdata );
+
+		// Enrich data with categories if they exist.
+		$allCats = $out->getCategoryLinks();
+		if ( !empty( $allCats['normal'] ) || !empty( $allCats['hidden'] ) ) {
+			$tdata['page']['categories'] = array_merge( $out->getCategoryLinks(), array(
+				'link' => array(
+					'href' => SpecialPage::getTitleFor( 'Special:Categories' )->getLocalUrl(),
+					'text' => wfMessage( 'categories' ),
+				),
+				'allHidden' => empty( $allCats['normal'] ) && !( !empty( $allCats['hidden'] ) && $showHidden ),
+			) );
+		}
 
 		$undelete = $sk->getUndeleteLink();
 		if ( $undelete ) {
