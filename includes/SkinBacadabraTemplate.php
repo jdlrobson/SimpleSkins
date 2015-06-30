@@ -133,6 +133,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			'indicators' => $this->getIndicators(),
 
 			'history' => $historyLink,
+			'view' => isset( $views["view"] ) ? $views["view"] : false,
 			'edit' => isset( $views["edit"] ) ? $views["edit"] : false,
 			'actions' => $actions,
 
