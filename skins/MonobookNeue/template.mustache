@@ -52,11 +52,9 @@
 						{{#namespaces}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/namespaces}}
 						{{#edit}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/edit}}
 						{{#history}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/history}}
-						{{#actions}}
-							{{#move}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/move}}
-							{{#watch}}<li id="{{id}}" class="{{class}}"><a href="{{href}}" >{{text}}</a></li>{{/watch}}
-							{{#delete}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/delete}}
-						{{/actions}}
+						{{#move}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/move}}
+						{{#watch}}<li id="{{id}}" class="{{class}}"><a href="{{href}}" >{{text}}</a></li>{{/watch}}
+						{{#delete}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/delete}}
 					</ul>
 					{{!<?php $this->renderAfterPortlet( 'cactions' ); ?>}}
 				</div>

@@ -113,7 +113,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 		$showHidden = $sk->getUser()->getBoolOption( 'showhiddencats' ) ||
 			$title->getNamespace() == NS_CATEGORY;
 
-		$tdata = array_merge( array(
+		$tdata = array_merge( $actions, array(
 			'sitename' => $data['sitename'],
 			'namespaces' => array_values( $namespaces ),
 
@@ -139,7 +139,6 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			'history' => $historyLink,
 			'view' => isset( $views["view"] ) ? $views["view"] : false,
 			'edit' => isset( $views["edit"] ) ? $views["edit"] : false,
-			'actions' => $actions,
 
 			'footerRows' => $footerRows,
 
@@ -187,12 +186,11 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			);
 		}
 
-		if ( isset( $data['content_navigation']["actions"]["unwatch"] ) ) {
-			$tdata['unwatch'] = $data['content_navigation']["actions"]["unwatch"];
+		// move, watch, delete
+		foreach( $actions as $key => $action ) {
+			$tdata[$key] = $action;
 		}
-		if ( isset( $data['content_navigation']["actions"]["watch"] ) ) {
-			$tdata['unwatch'] = $data['content_navigation']["actions"]["watch"];
-		}
+
 		echo $templateParser->processTemplate( "template", $tdata );
 	}
 }
