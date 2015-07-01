@@ -62,15 +62,15 @@
 				}
 			</script>
 			<div class="pre-content">
-				{{#if page.displayTitle}}{{! this is not valid mustache wtf}}
+				{{#page.displayTitle}}
 				<h1 id="firstHeading"
-					class="firstHeading" lang="{{page.language.code}}">{{{page.displayTitle}}}</h1>
-				{{/if}}
-				{{#if subtitle}}
+					class="firstHeading" lang="{{page.language.code}}">{{{text}}}</h1>
+				{{/page.displayTitle}}
+				{{#page.subtitle}}
 				<div class="warningbox">
-					{{{subtitle}}}
+					{{{text}}}
 				</div>
-				{{/if}}
+				{{/page.subtitle}}
 				{{^page.isSpecialPage}}
 				<ul id="page-actions" class="hlist">
 					{{#edit}}<li id="{{id}}" class="{{class}} mw-ui-icon mw-ui-icon-element mw-ui-icon-edit-enabled"><a href="{{href}}">{{text}}</a></li>{{/edit}}

@@ -5,16 +5,16 @@
 	<a id="top"></a>
 	{{#sitenotice}}<div id="siteNotice">{{{sitenotice}}}</div>{{/sitenotice}}
 	{{{indicators}}}
-	{{#if page.displayTitle}}{{! this is not valid mustache wtf}}
+	{{#page.displayTitle}}
 	<h1 id="firstHeading"
-		class="firstHeading" lang="{{page.language.code}}">{{{page.displayTitle}}}</h1>
-	{{/if}}
+		class="firstHeading" lang="{{language.code}}">{{{text}}}</h1>
+	{{/page.displayTitle}}
 	<div id="bodyContent" class="mw-body-content">
 	{{#page.isArticle}}
 		<div id="siteSub">{{messages.tagline}}</div>
 	{{/page.isArticle}}
 	<div id="contentSub" {{{userlangattributes}}}>
-		{{{subtitle}}}
+		{{{page.subtitle.text}}}
 	</div>
 	{{#restore}}
 		<div id="contentSub2">{{{title}}}</div>

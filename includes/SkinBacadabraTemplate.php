@@ -123,7 +123,6 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			// language
 			'userlangattributes' => $data['userlangattributes'],
 			'page' => array(
-				'displayTitle' => $data['title'],
 				'isArticle' => $out->isArticle(),
 				'exists' => $title->exists(),
 				'isMainPage' => $title->isMainPage(),
@@ -135,7 +134,6 @@ class SkinBacadabraTemplate extends BaseTemplate {
 				'hasLanguages' => count( $data['language_urls'] ) > 1,
 				'toc' => $out->getProperty( 'simple-skin-toc' ),
 			),
-			'subtitle' => $data['subtitle'],
 
 			'indicators' => $this->getIndicators(),
 
@@ -181,6 +179,17 @@ class SkinBacadabraTemplate extends BaseTemplate {
 				),
 				'allHidden' => empty( $allCats['normal'] ) && !( !empty( $allCats['hidden'] ) && $showHidden ),
 			) );
+		}
+		if ( isset( $data['title'] ) && $data['title'] ) {
+			$tdata['page']['displayTitle'] = array(
+				'text' => $data['title'],
+				'language' => $tdata['page']['language'],
+			);
+		}
+		if ( isset( $data['subtitle'] ) && $data['subtitle'] ) {
+			$tdata['page']['subtitle'] = array(
+				'text' => $data['subtitle'],
+			);
 		}
 
 		$undelete = $sk->getUndeleteLink();

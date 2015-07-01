@@ -34,7 +34,7 @@
 			</ul>
 			{{{site.poweredby}}}
 		</nav>
-		<h1>{{{page.displayTitle}}}</h1>
+		{{#page.displayTitle}}<h1>{{{text}}}</h1>{{/page.displayTitle}}
 		<div class="container-dali">
 			<a class="lastmodbar" href="{{history.href}}">{{history.info}}</a>
 			<div class="content">{{{bodytext}}}</div>
