@@ -49,11 +49,16 @@
 			{{#restore}}<a href="{{href}}" class="{{class}}">{{text}}</a>{{/restore}}
 		</div>
 		<footer>
-			{{#footerRows}}
+			{{#footer.info}}
 				<div>
-					{{#.}}{{{.}}} {{/.}}
+					{{{.}}}
 				</div>
-			{{/footerRows}}
+			{{/footer.info}}
+			{{#footer.places}}
+				<div>
+					{{{.}}}
+				</div>
+			{{/footer.places}}
 		</footer>
 	</body>
 {{{SKIN_END}}}

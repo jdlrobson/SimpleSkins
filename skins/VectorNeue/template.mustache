@@ -131,7 +131,8 @@
 </div>
 <div id="footer" role="contentinfo"{{{userlangattributes}}}>
 	<div id="f-list">
-		{{#footerRows}}{{#.}}<span>{{{.}}}</span>{{/.}}{{/footerRows}}
+		<ul class="footer-info">{{#footer.info}}{{#.}}<li>{{{.}}}</li>{{/.}}{{/footer.info}}</ul>
+		<ul id="footer-places">{{#footer.places}}{{#.}}<li>{{{.}}}</li>{{/.}}{{/footer.places}}</ul>
 	</div>
 	<ul id="footer-icons" class="noprint">
 		<li id="f-copyrightico">

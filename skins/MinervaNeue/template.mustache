@@ -88,7 +88,8 @@
 				{{/page.isSpecialPage}}
 		</div>
 		<div id="footer">
-			{{#footerRows}}{{#.}}<div>{{{.}}}</div>{{/.}}{{/footerRows}}
+			<ul class="footer-info">{{#footer.info}}{{#.}}<li>{{{.}}}</li>{{/.}}{{/footer.info}}</ul>
+			<ul class="footer-places">{{#footer.places}}{{#.}}<li>{{{.}}}</li>{{/.}}{{/footer.places}}</ul>
 		</div>
 	</div>
 </div>

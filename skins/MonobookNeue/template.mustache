@@ -144,9 +144,10 @@
 			<div id="f-poweredbyico">
 				{{{site.poweredby}}}
 			</div>
-			<div id="f-list">
-				{{#footerRows}}{{#.}}<span>{{{.}}}</span>{{/.}}{{/footerRows}}
-			</div>
+			<ul id="f-list">
+				{{#footer.info}}{{#.}}<li class="info">{{{.}}}</li>{{/.}}{{/footer.info}}
+				{{#footer.places}}{{#.}}<li>{{{.}}}</li>{{/.}}{{/footer.places}}
+			</ul>
 		</div>
 	</div>
 {{{SKIN_END}}}

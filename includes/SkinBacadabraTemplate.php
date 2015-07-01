@@ -29,6 +29,21 @@ class SkinBacadabraTemplate extends BaseTemplate {
 		return $cleanedArray;
 	}
 
+	protected function getFooterData() {
+		$data = $this->data;
+		$footer = array();
+		foreach( $data['footerlinks'] as $rowKey => $rowParts ) {
+			$row = array();
+			foreach( $rowParts as $element ) {
+				if ( $data[$element] ) {
+					$row[] = $data[$element];
+				}
+			}
+			$footer[$rowKey] = $row;
+		}
+		return $footer;
+	}
+
 	/**
 	 * Template filter callback for Minerva skin.
 	 * Takes an associative array of data set from a SkinTemplate-based
@@ -73,17 +88,6 @@ class SkinBacadabraTemplate extends BaseTemplate {
 		// cleanup personal urls
 		$personalUrls = $this->prepareLinksForTemplate( $data['personal_urls'] );
 		$toolboxUrls = $this->prepareLinksForTemplate( $this->getToolbox() );
-
-		$footerRows = array();
-		foreach( $data['footerlinks'] as $rowKey => $rowParts ) {
-			$row = array();
-			foreach( $rowParts as $element ) {
-				if ( $data[$element] ) {
-					$row[] = $data[$element];
-				}
-			}
-			$footerRows[] = $row;
-		}
 
 		$historyLink = isset( $views["history"] ) ? $views["history"] : false;
 		$title = $this->getSkin()->getTitle();
@@ -139,7 +143,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			'view' => isset( $views["view"] ) ? $views["view"] : false,
 			'edit' => isset( $views["edit"] ) ? $views["edit"] : false,
 
-			'footerRows' => $footerRows,
+			'footer' => $this->getFooterData(),
 
 			'personalUrls' => $personalUrls,
 			'languageUrls' => $data['language_urls'],
