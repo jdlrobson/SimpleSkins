@@ -133,6 +133,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 				),
 				'hasLanguages' => count( $data['language_urls'] ) > 1,
 				'toc' => $out->getProperty( 'simple-skin-toc' ),
+				'html' => $data['bodytext'],
 			),
 
 			'indicators' => $this->getIndicators(),
@@ -149,7 +150,6 @@ class SkinBacadabraTemplate extends BaseTemplate {
 
 			'SKIN_START' => $data['headelement'],
 			'sidebarPrimaryLinks' => $data['sidebar']['navigation'],
-			'bodytext' => $data['bodytext'],
 			'SKIN_END' => MWDebug::getDebugHTML( $sk->getContext() ) .
 					$data['bottomscripts'] . $data['reporttime'] . '</body></html>',
 			'site' => array(

@@ -79,7 +79,7 @@
 				{{/page.isSpecialPage}}
 			</div>
 			<div id="content" class="content mw-content-{{pageDir}}" lang="{{page.language.code}}" dir="{{page.language.dir}}">
-				{{{bodytext}}}
+				{{{page.html}}}
 				{{^page.isSpecialPage}}
 				<div id="page-secondary-actions">
 					{{#namespaces}}<a href="{{href}}" data-title="{{page}}" class="mw-ui-button button {{class}}">{{text}}</a> {{/namespaces}}
