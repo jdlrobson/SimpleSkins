@@ -65,11 +65,11 @@
 				<h3>{{messages.personaltools}}</h3>
 				<div class="pBody">
 					<ul {{{userlangattributes}}}>
-						{{#personalUrls}}
+						{{#menu.personal}}
 						<li id="pt-{{name}}">
 							<a href="{{href}}" class="{{class}}">{{text}}</a>
 						</li>
-						{{/personalUrls}}
+						{{/menu.personal}}
 					</ul>
 				</div>
 			</div>
@@ -81,11 +81,11 @@
 				<h3>{{messages.navigation}}</h3>
 				<div class="pBody">
 					<ul>
-						{{#sidebarPrimaryLinks}}
+						{{#menu.primary}}
 						<li>
 							<a href="{{href}}" class="{{class}}">{{text}}</a>
 						</li>
-						{{/sidebarPrimaryLinks}}
+						{{/menu.primary}}
 					</ul>
 				</div>
 			</div>
@@ -107,11 +107,11 @@
 				<h3>{{messages.toolbox}}</h3>
 				<div class="pBody">
 					<ul>
-						{{#toolboxUrls}}
+						{{#menu.toolbox}}
 						<li>
 							<a href="{{href}}" class="{{class}}">{{text}}</a>
 						</li>
-						{{/toolboxUrls}}
+						{{/menu.toolbox}}
 						{{!
 						wfRunHooks( 'MonoBookTemplateToolboxEnd', array( &$this ) );
 						wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this, true ) );
@@ -125,11 +125,11 @@
 				<h3 {{{userlangattributes}}}>{{messages.otherlanguages}}</h3>
 				<div class="pBody">
 					<ul>
-						{{#languageUrls}}
+						{{#page.languages}}
 						<li>
 							<a href="{{href}}" class="{{class}}">{{text}}</a>
 						</li>
-						{{/languageUrls}}
+						{{/page.languages}}
 					</ul>
 					{{! <?php $this->renderAfterPortlet( 'lang' ); }}
 				</div>

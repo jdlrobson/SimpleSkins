@@ -138,10 +138,14 @@ class SkinBacadabraTemplate extends BaseTemplate {
 				'hasLanguages' => count( $data['language_urls'] ) > 1,
 				'toc' => $out->getProperty( 'simple-skin-toc' ),
 				'html' => $data['bodytext'],
+				'languages' => $data['language_urls'],
 			),
-
+			'menu' => array(
+				'primary' => $data['sidebar']['navigation'],
+				'personal' => $personalUrls,
+				'toolbox' => $toolboxUrls,
+			),
 			'indicators' => $this->getIndicators(),
-
 			'history' => $historyLink,
 			'view' => isset( $views["view"] ) ? $views["view"] : false,
 			'edit' => isset( $views["edit"] ) ? $views["edit"] : false,
@@ -150,12 +154,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 
 			'footer' => $this->getFooterData(),
 
-			'personalUrls' => $personalUrls,
-			'languageUrls' => $data['language_urls'],
-			'toolboxUrls' => $toolboxUrls,
-
 			'SKIN_START' => $data['headelement'],
-			'sidebarPrimaryLinks' => $data['sidebar']['navigation'],
 			'SKIN_END' => MWDebug::getDebugHTML( $sk->getContext() ) .
 					$data['bottomscripts'] . $data['reporttime'] . '</body></html>',
 			'site' => array(

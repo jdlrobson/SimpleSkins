@@ -4,18 +4,18 @@
 		<div class="menu">
 			{{! fixme i do not work}}
 			<ul>
-				{{#sidebarPrimaryLinks}}
+				{{#menu.primary}}
 				<li class="{{class}}">
 					<a href="{{href}}" class="{{class}}">{{text}}</a>
 				</li>
-				{{/sidebarPrimaryLinks}}
+				{{/menu.primary}}
 			</ul>
 			<ul>
-				{{#personalUrls}}
+				{{#menu.personal}}
 				<li class="{{class}}">
 					<a href="{{href}}" class="{{class}}">{{text}}</a>
 				</li>
-				{{/personalUrls}}
+				{{/menu.personal}}
 			</ul>
 			<ul class="hlist">
 				{{#sitelinks}}

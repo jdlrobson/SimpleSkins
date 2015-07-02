@@ -1,36 +1,36 @@
 {{{SKIN_START}}}
 		<nav class="personal">
-			{{#personalUrls}}
+			{{#menu.personal}}
 			<a href="{{href}}" class="{{class}}">{{text}}</a>
-			{{/personalUrls}}
+			{{/menu.personal}}
 		</nav>
 		<nav class="site">
 			{{{page.toc}}}
 			<h2>{{{site.name}}}</h2>
 			<ul>
-				{{#sidebarPrimaryLinks}}
+				{{#menu.primary}}
 				<li>
 					<a href="{{href}}" class="{{class}}">{{text}}</a>
 				</li>
-				{{/sidebarPrimaryLinks}}
+				{{/menu.primary}}
 			</ul>
 			{{#page.hasLanguages}}
 			<h2>{{messages.otherlanguages}}</h2>
 			<ul>
-				{{#languageUrls}}
+				{{#page.languages}}
 				<li>
 					<a href="{{href}}" class="{{class}}">{{text}}</a>
 				</li>
-				{{/languageUrls}}
+				{{/page.languages}}
 			</ul>
 			{{/page.hasLanguages}}
 			<h2>{{messages.toolbox}}</h2>
 			<ul>
-				{{#toolboxUrls}}
+				{{#menu.toolbox}}
 				<li>
 					<a href="{{href}}" class="{{class}}">{{text}}</a>
 				</li>
-				{{/toolboxUrls}}
+				{{/menu.toolbox}}
 			</ul>
 			{{{site.poweredby}}}
 		</nav>

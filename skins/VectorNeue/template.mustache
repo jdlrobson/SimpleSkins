@@ -109,11 +109,11 @@
 		<h3>{{messages.navigation}}</h3>
 		<div class="body">
 			<ul>
-				{{#sidebarPrimaryLinks}}
+				{{#menu.primary}}
 				<li id="{{id}}">
 					<a href="{{href}}" class="{{class}}">{{text}}</a>
 				</li>
-				{{/sidebarPrimaryLinks}}
+				{{/menu.primary}}
 			</ul>
 		</div>
 	</div>
@@ -121,11 +121,11 @@
 		<h3 id="p-tb-label">{{messages.toolbox}}</h3>
 		<div class="body">
 			<ul>
-				{{#toolboxUrls}}
+				{{#menu.toolbox}}
 				<li>
 					<a href="{{href}}" class="{{class}}">{{text}}</a>
 				</li>
-				{{/toolboxUrls}}
+				{{/menu.toolbox}}
 			</ul>
 		</div>
 	</div>
