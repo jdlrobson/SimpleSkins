@@ -5,8 +5,14 @@
 			{{/menu.personal}}
 		</nav>
 		<nav class="site">
+			{{#search}}
+				<form action="{{action}}">
+					{{{input}}}
+					{{{button}}}
+					{{{buttonfulltext}}}
+				</form>
+			{{/search}}
 			{{{page.toc}}}
-			<h2>{{{site.name}}}</h2>
 			<ul>
 				{{#menu.primary}}
 				<li>
@@ -32,11 +38,14 @@
 				</li>
 				{{/menu.toolbox}}
 			</ul>
+			{{{site.name}}}<br>
 			{{{site.poweredby}}}
+			{{{site.copyright}}}
 		</nav>
 		{{#page.displayTitle}}<h1>{{{text}}}</h1>{{/page.displayTitle}}
 		<div class="container-dali">
-			<a class="lastmodbar" href="{{history.href}}">{{history.info}}</a>
+			{{{page.indicators}}}
+			{{#history}}<a class="lastmodbar" href="{{href}}">{{info}} ({{text}})</a>{{/history}}
 			<div class="content">{{{page.html}}}</div>
 		</div>
 		<div class="actions">
