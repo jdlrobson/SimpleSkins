@@ -13,7 +13,7 @@
 	{{#page.isArticle}}
 		<div id="siteSub">{{messages.tagline}}</div>
 	{{/page.isArticle}}
-	<div id="contentSub" {{{userlangattributes}}}>
+	<div id="contentSub" {{#page.language}}lang="{{code}}" dir="{{dir}}"{{/page.language}}>
 		{{{page.subtitle.text}}}
 	</div>
 	{{#restore}}
@@ -144,7 +144,7 @@
 	</div>
 	{{/page.hasLanguages}}
 </div>
-<div id="footer" role="contentinfo"{{{userlangattributes}}}>
+<div id="footer" role="contentinfo" {{#page.language}}lang="{{code}}" dir="{{dir}}"{{/page.language}}>
 	<div id="f-list">
 		<ul class="footer-info">{{#footer.info}}{{#.}}<li>{{{.}}}</li>{{/.}}{{/footer.info}}</ul>
 		<ul id="footer-places">{{#footer.places}}{{#.}}<li>{{{.}}}</li>{{/.}}{{/footer.places}}</ul>

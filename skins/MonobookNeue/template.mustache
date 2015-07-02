@@ -11,7 +11,7 @@
 			{{/page.displayTitle}}
 			<div id="bodyContent" class="mw-body-content">
 				<div id="siteSub">{{tagline}}</div>
-					<div id="contentSub" {{{userlangattributes}}}>{{{page.subtitle.text}}}</div>
+					<div id="contentSub" {{#page.language}}lang="{{code}}" dir="{{dir}}"{{/page.language}}>{{{page.subtitle.text}}}</div>
 					{{^undelete}}<div id="contentSub2">{{{undelete}}}</div>{{/undelete}}
 					{{#newtalk}}<div class="usermessage">{{{newtalk}}}</div>{{/newtalk}}
 					<div id="jump-to-nav" class="mw-jump">{{messages.jumpto}}
@@ -42,7 +42,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="column-one" {{{userlangattributes}}}>
+		<div id="column-one" {{#page.language}}lang="{{code}}" dir="{{dir}}"{{/page.language}}>
 			<h2>{{messages.navigation-heading}}</h2>
 			<div id="p-cactions" class="portlet" role="navigation">
 				<h3>{{messages.views}}</h3>
@@ -64,7 +64,7 @@
 			<div class="portlet" id="p-personal" role="navigation">
 				<h3>{{messages.personaltools}}</h3>
 				<div class="pBody">
-					<ul {{{userlangattributes}}}>
+					<ul {{#page.language}}lang="{{code}}" dir="{{dir}}"{{/page.language}}>
 						{{#menu.personal}}
 						<li id="pt-{{name}}">
 							<a href="{{href}}" class="{{class}}">{{text}}</a>
@@ -122,7 +122,7 @@
 			</div>
 			{{#page.hasLanguages}}
 			<div id="p-lang" class="portlet" role="navigation">
-				<h3 {{{userlangattributes}}}>{{messages.otherlanguages}}</h3>
+				<h3 {{#page.language}}lang="{{code}}" dir="{{dir}}"{{/page.language}}>{{messages.otherlanguages}}</h3>
 				<div class="pBody">
 					<ul>
 						{{#page.languages}}
@@ -138,7 +138,7 @@
 		</div><!-- end of the left (by default at least) column -->
 		<div class="visualClear"></div>
 		{{! TODO: Footer}}
-		<div id="footer" role="contentinfo" {{{userlangattributes}}}>
+		<div id="footer" role="contentinfo" {{#page.language}}lang="{{code}}" dir="{{dir}}"{{/page.language}}>
 			<div id="f-copyrightico">
 				{{{site.copyright}}}
 			</div>

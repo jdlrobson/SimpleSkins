@@ -91,7 +91,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 
 		$historyLink = isset( $views["history"] ) ? $views["history"] : false;
 		$title = $this->getSkin()->getTitle();
-		$pageLanguage = $title->getPageViewLanguage();
+		$pageLanguage = $sk->getLanguage();
 
 		if ( $historyLink ) {
 			$revId = $this->getSkin()->getRevisionId();
@@ -124,8 +124,6 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			$title->getNamespace() == NS_CATEGORY;
 
 		$tdata = array_merge( $actions, array(
-			// language
-			'userlangattributes' => $data['userlangattributes'],
 			'page' => array(
 				'isArticle' => $out->isArticle(),
 				'exists' => $title->exists(),
