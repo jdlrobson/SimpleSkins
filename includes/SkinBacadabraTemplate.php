@@ -74,7 +74,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 		) );
 
 		$nav = $data['content_navigation'];
-		$namespaces = $nav['namespaces'];
+
 		$views = $nav["views"];
 		$actions = $nav["actions"];
 		if ( isset( $actions["unwatch"] ) ) {
@@ -114,12 +114,16 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			}
 		}
 
+		// clean up namespaces
+		$namespaces = $nav['namespaces'];
+		// Generates XML IDs from namespace names
+		$subjectId = $title->getNamespaceKey( '' );
+		$talkId = $subjectId === 'main' ? 'talk' : "{$subjectId}_talk";
+
 		$showHidden = $sk->getUser()->getBoolOption( 'showhiddencats' ) ||
 			$title->getNamespace() == NS_CATEGORY;
 
 		$tdata = array_merge( $actions, array(
-			'namespaces' => array_values( $namespaces ),
-
 			// language
 			'userlangattributes' => $data['userlangattributes'],
 			'page' => array(
@@ -141,6 +145,8 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			'history' => $historyLink,
 			'view' => isset( $views["view"] ) ? $views["view"] : false,
 			'edit' => isset( $views["edit"] ) ? $views["edit"] : false,
+			'talk' => $namespaces[$talkId],
+			'view' => $namespaces[$subjectId],
 
 			'footer' => $this->getFooterData(),
 

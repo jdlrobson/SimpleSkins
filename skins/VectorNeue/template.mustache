@@ -55,7 +55,8 @@
 			<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
 				<h3 id="p-namespaces-label">Namespaces</h3>
 				<ul>
-					{{#namespaces}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/namespaces}}
+					{{#view}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/view}}
+					{{#talk}}<li id="{{id}}" class="{{class}}"><span><a href="{{href}}">{{text}}</a></span></li>{{/talk}}
 				</ul>
 			</div>
 		{{! $this->renderNavigation( array( 'VARIANTS' ) ); }}

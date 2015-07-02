@@ -49,7 +49,8 @@
 
 				<div class="pBody">
 					<ul>
-						{{#namespaces}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/namespaces}}
+						{{#view}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/view}}
+						{{#talk}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/talk}}
 						{{#edit}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/edit}}
 						{{#history}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/history}}
 						{{#move}}<li id="{{id}}" class="{{class}}"><a href="{{href}}">{{text}}</a></li>{{/move}}
