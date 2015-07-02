@@ -37,6 +37,22 @@ nav {
 		text-transform: uppercase;
 		font-size: 1em;
 		color: #aaa;
+		cursor: pointer;
+
+		&.toggle {
+			&::after {
+				content: '^';
+				padding-left: 8px;
+				color: #999;
+				font-weight: bold;
+			}
+
+			&.open {
+				&::after {
+					content: '˅';
+				}
+			}
+		}
 	}
 }
 
