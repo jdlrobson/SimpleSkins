@@ -129,6 +129,20 @@
 			</ul>
 		</div>
 	</div>
+	{{#page.hasLanguages}}
+	<div class="portal" role="navigation" id="p-lang" aria-labelledby="p-lang-label">
+		<h3 id="p-lang-label">In other languages</h3>
+		<div class="body">
+			<ul>
+				{{#page.languages}}
+				<li class="interlanguage-link interwiki-{{lang}}">
+					<a href="{{href}}" class="{{class}}" lang="{{lang}}">{{text}}</a>
+				</li>
+				{{/page.languages}}
+			</ul>
+		</div>
+	</div>
+	{{/page.hasLanguages}}
 </div>
 <div id="footer" role="contentinfo"{{{userlangattributes}}}>
 	<div id="f-list">
