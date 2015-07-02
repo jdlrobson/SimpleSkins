@@ -125,6 +125,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 
 		$tdata = array_merge( $actions, array(
 			'page' => array(
+				'indicators' => $this->getIndicators(),
 				'isArticle' => $out->isArticle(),
 				'exists' => $title->exists(),
 				'isMainPage' => $title->isMainPage(),
@@ -143,7 +144,6 @@ class SkinBacadabraTemplate extends BaseTemplate {
 				'personal' => $personalUrls,
 				'toolbox' => $toolboxUrls,
 			),
-			'indicators' => $this->getIndicators(),
 			'history' => $historyLink,
 			'view' => isset( $views["view"] ) ? $views["view"] : false,
 			'edit' => isset( $views["edit"] ) ? $views["edit"] : false,
