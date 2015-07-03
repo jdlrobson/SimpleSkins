@@ -146,8 +146,6 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			'history' => $historyLink,
 			'view' => isset( $views["view"] ) ? $views["view"] : false,
 			'edit' => isset( $views["edit"] ) ? $views["edit"] : false,
-			'talk' => $namespaces[$talkId],
-			'view' => $namespaces[$subjectId],
 
 			'footer' => $this->getFooterData(),
 
@@ -203,6 +201,12 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			);
 		}
 
+		if ( !$title->isSpecialPage() ) {
+			$tdata = array_merge( $tdata, array(
+				'talk' => $namespaces[$talkId],
+				'view' => $namespaces[$subjectId],
+			) );
+		}
 		$undelete = $sk->getUndeleteLink();
 		if ( $undelete ) {
 			$tdata['restore'] = array(
