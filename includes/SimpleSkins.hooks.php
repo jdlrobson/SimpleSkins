@@ -92,7 +92,7 @@ class SimpleSkinsHooks {
 				$skinKey = strtolower( $skinName );
 				if ( !isset( $wgValidSkinNames[$skinKey] ) ) {
 					$factory->register( $skinKey, $skinName, function () use ( $skinKey ) {
-						$skin = new SkinBacadabra( $skinKey );
+						$skin = new SimpleSkin( $skinKey );
 						$skin->setSimpleSkinName( $skinKey );
 						return $skin;
 					} );
@@ -104,25 +104,5 @@ class SimpleSkinsHooks {
 	public static function onSetupAfterCache() {
 		self::registerAvailableSimpleSkins();
 		return true;
-	}
-
-	/**
-	 * RequestContextCreateSkin hook handler
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/RequestContextCreateSkin
-	 *
-	 * @param IContextSource $context
-	 * @param Skin $skin
-	 * @return bool
-	 */
-	public static function onRequestContextCreateSkin( $context, &$skin ) {
-		$userSkin = $context->getUser()->getOption( 'skin' );
-		$userSkin = $context->getRequest()->getVal( 'useskin', $userSkin );
-		$parts = explode( '/', $userSkin );
-		if ( $parts[0] === 'bacadabra' ) {
-			$skinName = 'SkinBacadabra';
-			$skin = new $skinName( $context );
-			$skin->setSimpleSkinName( $parts[1] );
-		}
-		return false;
 	}
 }

@@ -27,8 +27,8 @@ $wgExtensionCredits['other'][] = array(
 // autoload extension classes
 $autoloadClasses = array (
 	'SimpleSkinsHooks' => 'SimpleSkins.hooks',
-	'SkinBacadabra' => 'SkinBacadabra',
-	'SkinBacadabraTemplate' => 'SkinBacadabraTemplate',
+	'SimpleSkin' => 'SimpleSkin',
+	'SimpleSkinTemplate' => 'SimpleSkinTemplate',
 );
 
 foreach ( $autoloadClasses as $className => $classFilename ) {
@@ -45,5 +45,4 @@ $wgSimpleSkinDefault = 'Dali';
 
 $wgHooks['OutputPageParserOutput'][] = 'SimpleSkinsHooks::onOutputPageParserOutput';
 $wgHooks['SetupAfterCache'][] = 'SimpleSkinsHooks::onSetupAfterCache';
-$wgHooks['RequestContextCreateSkin'][] = 'SimpleSkinsHooks::onRequestContextCreateSkin';
 $wgHooks['ResourceLoaderRegisterModules'][] = 'SimpleSkinsHooks::onResourceLoaderRegisterModules';

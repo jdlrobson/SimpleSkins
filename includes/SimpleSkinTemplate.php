@@ -1,6 +1,6 @@
 <?php
 
-class SkinBacadabraTemplate extends BaseTemplate {
+class SimpleSkinTemplate extends BaseTemplate {
 	protected $simpleSkin;
 
 	protected function getOptionalSiteLinkData( $desc, $pageKey ) {

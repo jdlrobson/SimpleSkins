@@ -3,10 +3,8 @@
  * Inherit main code from SkinTemplate, set up the CSS and template.
  * @ingroup Skins
  */
-class SkinBacadabra extends SkinTemplate {
-	public $skinname = 'bacadabra';
-	public $stylename = 'bacadabra';
-	public $template = 'SkinBacadabraTemplate';
+class SimpleSkin extends SkinTemplate {
+	public $template = 'SimpleSkinTemplate';
 	public $useHeadElement = true;
 	protected $simpleSkin;
 
