@@ -123,6 +123,10 @@ class SkinBacadabraTemplate extends BaseTemplate {
 		$showHidden = $sk->getUser()->getBoolOption( 'showhiddencats' ) ||
 			$title->getNamespace() == NS_CATEGORY;
 
+		$languageData = array(
+			'code' => $pageLanguage->getHtmlCode(),
+			'dir' => $pageLanguage->getDir(),
+		);
 		$tdata = array_merge( $actions, array(
 			'page' => array(
 				'indicators' => $this->getIndicators(),
@@ -130,14 +134,9 @@ class SkinBacadabraTemplate extends BaseTemplate {
 				'exists' => $title->exists(),
 				'isMainPage' => $title->isMainPage(),
 				'isSpecialPage' => $title->isSpecialPage(),
-				'language' => array(
-					'code' => $pageLanguage->getHtmlCode(),
-					'dir' => $pageLanguage->getDir(),
-				),
-				'hasLanguages' => count( $data['language_urls'] ) > 1,
+				'language' => $languageData,
 				'toc' => $out->getProperty( 'simple-skin-toc' ),
 				'html' => $data['bodytext'],
-				'languages' => $data['language_urls'],
 			),
 			'menu' => array(
 				'primary' => $data['sidebar']['navigation'],
@@ -192,6 +191,15 @@ class SkinBacadabraTemplate extends BaseTemplate {
 		if ( isset( $data['subtitle'] ) && $data['subtitle'] ) {
 			$tdata['page']['subtitle'] = array(
 				'text' => $data['subtitle'],
+			);
+		}
+		if ( isset( $data['language_urls'] ) && $data['language_urls'] ) {
+			$tdata['page']['languages'] = array(
+				'current' => $languageData,
+				'heading' => wfMessage( 'otherlanguages' ),
+				// FIXME: https://phabricator.wikimedia.org/T104660
+				'href' => SpecialPage::getTitleFor( 'MobileLanguages', $title->getPrefixedDBkey() )->getLocalUrl(),
+				'links' => $data['language_urls'],
 			);
 		}
 

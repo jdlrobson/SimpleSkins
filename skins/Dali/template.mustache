@@ -20,16 +20,16 @@
 				</li>
 				{{/menu.primary}}
 			</ul>
-			{{#page.hasLanguages}}
-			<h2 class="toggle">{{messages.otherlanguages}}</h2>
+			{{#page.languages}}
+			<h2 class="toggle">{{heading}}</h2>
 			<ul>
-				{{#page.languages}}
+				{{#links}}
 				<li>
 					<a href="{{href}}" class="{{class}}">{{text}}</a>
 				</li>
-				{{/page.languages}}
+				{{/links}}
 			</ul>
-			{{/page.hasLanguages}}
+			{{/page.languages}}
 			<h2 class="toggle">{{messages.toolbox}}</h2>
 			<ul>
 				{{#menu.toolbox}}

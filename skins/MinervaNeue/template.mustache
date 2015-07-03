@@ -83,7 +83,7 @@
 				{{^page.isSpecialPage}}
 				<div id="page-secondary-actions">
 					{{#talk}}<a href="{{href}}" data-title="{{page}}" class="mw-ui-button button {{class}}">{{text}}</a> {{/talk}}
-					<a href="" class="mw-ui-button button {{languageSelector}}">{{messages.mobile-frontend-language-article-heading}}</a>
+					{{#page.languages}}<a href="{{href}}" class="mw-ui-button button {{languageSelector}}">{{heading}}</a>{{/page.languages}}
 				</div>
 				{{/page.isSpecialPage}}
 		</div>

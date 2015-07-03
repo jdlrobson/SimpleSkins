@@ -120,21 +120,21 @@
 					{{! <?php $this->renderAfterPortlet( 'tb' ); ?>}}
 				</div>
 			</div>
-			{{#page.hasLanguages}}
+			{{#page.languages}}
 			<div id="p-lang" class="portlet" role="navigation">
-				<h3 {{#page.language}}lang="{{code}}" dir="{{dir}}"{{/page.language}}>{{messages.otherlanguages}}</h3>
+				<h3 {{#current}}lang="{{code}}" dir="{{dir}}"{{/current}}>{{heading}}</h3>
 				<div class="pBody">
 					<ul>
-						{{#page.languages}}
+						{{#links}}
 						<li>
 							<a href="{{href}}" class="{{class}}">{{text}}</a>
 						</li>
-						{{/page.languages}}
+						{{/links}}
 					</ul>
 					{{! <?php $this->renderAfterPortlet( 'lang' ); }}
 				</div>
 			</div>
-			{{/page.hasLanguages}}
+			{{/page.languages}}
 		</div><!-- end of the left (by default at least) column -->
 		<div class="visualClear"></div>
 		{{! TODO: Footer}}
