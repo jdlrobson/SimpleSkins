@@ -26,6 +26,28 @@ class SimpleSkinsHooks {
 			$out->enableTOC( false );
 		}
 	}
+
+	protected static function getFiles( $name, $subfolder = 'scripts',
+		$standaloneFile = 'init.js'
+	) {
+		$files = array();
+		$file = "skins/$name/$standaloneFile";
+		if ( file_exists( dirname( __FILE__ ) . '/../' . $file ) ) {
+			$files[] = $file;
+		}
+		$path = dirname( __FILE__ ) . "/../skins/$name/$subfolder";
+		if ( file_exists( $path ) ) {
+			$dir = new DirectoryIterator( $path );
+			foreach ( $dir as $fileinfo ) {
+				if ( !$fileinfo->isDot() ) {
+					$file = $fileinfo->getFilename();
+					$files[] = "skins/$name/$subfolder/$file";
+				}
+			}
+		}
+		return $files;
+	}
+
 	/**
 	 * ResourceLoaderRegisterModules hook handler
 	 *
@@ -47,15 +69,11 @@ class SimpleSkinsHooks {
 				$rlModule = array(
 					"skins.bacadabra.$name.styles" => $wgSFResourceBoilerplate + array(
 						'position' => 'top',
-						'styles' => array(
-							"skins/$name/styles.less",
-						),
+						'styles' => self::getFiles( $name, 'styles', 'styles.less' ),
 					),
 					"skins.bacadabra.$name.scripts" => $wgSFResourceBoilerplate + array(
 						'position' => 'top',
-						'scripts' => array(
-							"skins/$name/init.js",
-						),
+						'scripts' => self::getFiles( $name, 'scripts', 'init.js' ),
 					),
 				);
 				$resourceLoader->register( $rlModule );
