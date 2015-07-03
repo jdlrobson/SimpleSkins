@@ -3,6 +3,44 @@
 class SkinBacadabraTemplate extends BaseTemplate {
 	protected $simpleSkin;
 
+	protected function getOptionalSiteLinkData( $desc, $pageKey ) {
+		$sk = $this->getSkin();
+		if ( $sk->msg( $desc )->inContentLanguage()->isDisabled() ) {
+			// then it is disabled, for all languages.
+			return false;
+		} else {
+			// Otherwise, we display the link for the user, described in their
+			// language (which may or may not be the same as the default language),
+			// but we make the link target be the one site-wide page.
+			$title = Title::newFromText( $sk->msg( $pageKey )->inContentLanguage()->text() );
+
+			if ( !$title ) {
+				return false;
+			}
+
+			return array(
+				'text' => $sk->msg( $desc )->escaped(),
+				'href' => $title->getLocalUrl(),
+			);
+		}
+	}
+
+	protected function getSiteLinkData() {
+		$data = array(
+			'mainpage' => $this->data['nav_urls']['mainpage'],
+		);
+
+		$disclaimer = $this->getOptionalSiteLinkData( 'disclaimers', 'disclaimerpage' );
+		$about = $this->getOptionalSiteLinkData( 'aboutsite', 'aboutpage' );
+		if ( $about ) {
+			$data['about'] = $about;
+		}
+		if ( $disclaimer ) {
+			$data['disclaimer'] = $disclaimer;
+		}
+		return $data;
+	}
+
 	protected function prepareLinksForTemplate( $array ) {
 		$cleanedArray = array();
 		foreach ( $array as $key => $val ) {
@@ -153,9 +191,7 @@ class SkinBacadabraTemplate extends BaseTemplate {
 			'SKIN_END' => MWDebug::getDebugHTML( $sk->getContext() ) .
 					$data['bottomscripts'] . $data['reporttime'] . '</body></html>',
 			'site' => array(
-				'links' => array(
-					'mainpage' => $data['nav_urls']['mainpage'],
-				),
+				'links' => $this->getSiteLinkData(),
 				'name' => $data['sitename'],
 				'poweredby' => $data['poweredbyico'],
 				'copyright' => $data['copyright'],

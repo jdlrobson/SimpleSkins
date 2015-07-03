@@ -18,13 +18,16 @@
 				{{/menu.personal}}
 			</ul>
 			<ul class="hlist">
-				{{#sitelinks}}
+				{{#site.links.about}}
 					<li class="{{class}}">
-						{{#components}}
-							<a href="{{href}}" class="{{class}}" data-event-name="{{data-event-name}}">{{text}}</a>
-						{{/components}}
+							<a href="{{href}}" class="{{class}}">{{text}}</a>
 					</li>
-				{{/sitelinks}}
+				{{/site.links.about}}
+				{{#site.links.disclaimer}}
+					<li class="{{class}}">
+							<a href="{{href}}" class="{{class}}">{{text}}</a>
+					</li>
+				{{/site.links.disclaimer}}
 			</ul>
 		</div>
 	</nav>
