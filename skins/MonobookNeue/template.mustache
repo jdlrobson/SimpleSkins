@@ -67,7 +67,7 @@
 					<ul {{#page.language}}lang="{{code}}" dir="{{dir}}"{{/page.language}}>
 						{{#menu.personal}}
 						<li id="pt-{{name}}">
-							<a href="{{href}}" class="{{class}}">{{text}}</a>
+							<a href="{{href}}" class="{{class}}">{{^badge}}{{text}}{{/badge}}{{badge}}</a>
 						</li>
 						{{/menu.personal}}
 					</ul>

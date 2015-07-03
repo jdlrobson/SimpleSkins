@@ -124,6 +124,11 @@ class SimpleSkinTemplate extends BaseTemplate {
 		$toolboxUrls = array();
 
 		// cleanup personal urls
+		if ( isset( $data['personal_urls']['notifications'] ) ) {
+			// clean up Echo to have a more standard structure:
+			$data['personal_urls']['notifications']['badge'] = $data['personal_urls']['notifications']['text'];
+			$data['personal_urls']['notifications']['text'] = SpecialPage::getTitleFor( 'Notifications' )->getText();
+		}
 		$personalUrls = $this->prepareLinksForTemplate( $data['personal_urls'] );
 		$toolboxUrls = $this->prepareLinksForTemplate( $this->getToolbox() );
 

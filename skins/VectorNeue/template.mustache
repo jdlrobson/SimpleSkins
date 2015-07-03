@@ -51,6 +51,16 @@
 <h2>{{messages.navigation-heading}}</h2>
 
 <div id="mw-head">
+	<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+		<h3 id="p-personal-label">Personal tools</h3>
+		<ul {{#page.language}}lang="{{code}}" dir="{{dir}}"{{/page.language}}>
+			{{#menu.personal}}
+			<li id="pt-{{name}}">
+				<a href="{{href}}" class="{{class}}">{{^badge}}{{text}}{{/badge}}{{badge}}</a>
+			</li>
+			{{/menu.personal}}
+		</ul>
+	</div>
 	<div id="left-navigation">
 			<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
 				<h3 id="p-namespaces-label">Namespaces</h3>
