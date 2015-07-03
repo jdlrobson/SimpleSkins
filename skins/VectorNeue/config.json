@@ -1,4 +1,5 @@
 {
+	"legacy": true,
 	"styles": [ "mediawiki.skinning.interface", "skins.vector.styles" ],
 	"messages": [
 		"tagline",

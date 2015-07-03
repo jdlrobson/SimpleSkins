@@ -16,12 +16,12 @@ class SimpleSkinsHooks {
 		$skin = $out->getSkin();
 		if ( method_exists( $skin, 'getSimpleConfig' ) ) {
 			$config = $skin->getSimpleConfig();
-			$version = isset( $config['version'] ) ? $config['version'] : 1;
+			$legacy = isset( $config['legacy'] ) ? $config['legacy'] : false;
 		} else {
-			$version = 1;
+			$legacy = false;
 		}
 
-		if ( $version > 1 ) {
+		if ( !$legacy ) {
 			$out->setProperty( 'simple-skin-toc', $po->getTOCHTML() );
 			$out->enableTOC( false );
 		}

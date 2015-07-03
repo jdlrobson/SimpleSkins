@@ -1,4 +1,5 @@
 {
+	"legacy": true,
 	"styles": [ "mediawiki.skinning.interface", "skins.monobook.styles" ],
 	"messages": [
 		"comma-separator",
