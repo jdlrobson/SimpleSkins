@@ -98,15 +98,16 @@ class SimpleSkinTemplate extends BaseTemplate {
 		$path = __DIR__ . "/../skins/$name";
 		$templateParser = new TemplateParser( $path );
 		$data = $this->data;
-		$tdata = $sk->getSimpleConfig();
+		$baseData = array();
+		$configData = $sk->getSimpleConfig();
 
 		$msgObj = array();
-		if ( isset( $tdata['messages'] ) ) {
-			foreach ( $tdata['messages'] as $msgKey ) {
+		if ( isset( $configData['messages'] ) ) {
+			foreach ( $configData['messages'] as $msgKey ) {
 				$msgObj[$msgKey] = wfMessage( $msgKey )->text();
 			}
 		}
-		$tdata['messages'] = array_merge( $msgObj, array(
+		$baseData['messages'] = array_merge( $msgObj, array(
 			'toolbox' => wfMessage( 'toolbox' ),
 			'otherlanguages' => wfMessage( 'otherlanguages' ),
 		) );
@@ -170,7 +171,7 @@ class SimpleSkinTemplate extends BaseTemplate {
 			'code' => $pageLanguage->getHtmlCode(),
 			'dir' => $pageLanguage->getDir(),
 		);
-		$tdata = array_merge( $actions, array(
+		$tdata = array_merge( $baseData, array(
 			'page' => array(
 				'indicators' => $this->getIndicators(),
 				'isArticle' => $out->isArticle(),
@@ -207,8 +208,8 @@ class SimpleSkinTemplate extends BaseTemplate {
 				'input' => $this->makeSearchInput( array( 'id' => 'searchInput', 'class' => 'search' ) ),
 				'button' => $this->makeSearchButton( 'go', array( "id" => "searchGoButton", "class" => "searchButton" ) ),
 				'buttonfulltext' => $this->makeSearchButton( "fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" ) ),
-			)
-		), $tdata );
+			),
+		) );
 
 		// Enrich data with categories if they exist.
 		$allCats = $out->getCategoryLinks();
