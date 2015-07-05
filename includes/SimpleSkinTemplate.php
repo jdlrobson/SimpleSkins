@@ -1,7 +1,63 @@
 <?php
+use OOUI\IconWidget;
+OOUI\Theme::setSingleton( new OOUI\MediaWikiTheme() );
 
 class SimpleSkinTemplate extends BaseTemplate {
 	protected $simpleSkin;
+
+	protected function getIcon( $key ) {
+		$icon = new OOUI\IconWidget( array(
+			'icon' => $key,
+		) );
+		$icon->addClasses( array( "mw-ui-icon mw-ui-icon-element mw-ui-icon-$key" ) );
+		return $icon->toString();
+	}
+
+	protected function getMenuItem( $key, $page ) {
+		$title = Title::newFromText( $page );
+		return array(
+			'name' => $key,
+			'text' => $title->getText(),
+			'href' => $title->getLocalUrl(),
+			'icon' => $this->getIcon( $key ),
+		);
+	}
+
+	protected function getMenu( $key ) {
+		global $wgSimpleSkinMenu;
+		$configData = $this->getSkin()->getSimpleConfig();
+		if ( isset( $configData['menu'][$key] ) ) {
+			$pages = $configData['menu'][$key];
+		} else {
+			$pages = $wgSimpleSkinMenu[$key];
+		}
+
+		$menu = array();
+		$user = $this->getSkin()->getUser();
+		$index = $user->isAnon() ? 0 : 1;
+		$username = $user->getName();
+		foreach( $pages as $key => $page ) {
+			if ( is_array( $page ) ) {
+				$page = $page[$index];
+			}
+
+			if ( is_array( $page ) ) {
+				$links = array();
+				foreach ( $page as $subkey => $subpage ) {
+					//$subpage = str_replace( $subpage, '$1', $username );
+					$links[] = $this->getMenuItem( $subkey, $subpage );
+				}
+				$menu[] = array(
+					'links' => $links,
+				);
+			} elseif ( $page !== false ) {
+				//$page = str_replace( $page, '$1', $username );
+				$item = $this->getMenuItem( $key, $page );
+				$menu[] = $item;
+			}
+		}
+		return $menu;
+	}
 
 	protected function getOptionalSiteLinkData( $desc, $pageKey ) {
 		$sk = $this->getSkin();
@@ -60,6 +116,7 @@ class SimpleSkinTemplate extends BaseTemplate {
 					}
 				}
 				$val['name'] = $key;
+				$val['icon'] = $this->getIcon( $key );
 
 				$cleanedArray[] = $val;
 			}
@@ -183,8 +240,8 @@ class SimpleSkinTemplate extends BaseTemplate {
 				'html' => $data['bodytext'],
 			),
 			'menu' => array(
-				'primary' => $data['sidebar']['navigation'],
-				'personal' => $personalUrls,
+				'primary' => $this->getMenu( 'primary' ),
+				'personal' => $this->getMenu( 'personal' ),
 				'toolbox' => $toolboxUrls,
 			),
 			'history' => $historyLink,

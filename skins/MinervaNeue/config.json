@@ -1,4 +1,24 @@
 {
+	"menu": {
+		"primary": {
+			"home": "Main page",
+			"random": "Special:Random",
+			"nearby": "Special:Nearby"
+		},
+		"personal": {
+			"watchlist": "Special:Watchlist",
+			"mobileoptions": "Special:Preferences",
+			"login": [
+				{
+					"anonymous-white": "Special:Userlogin"
+				},
+				{
+					"profile": "Special:UserProfile/$1",
+					"secondary-logout": "Special:Userlogout"
+				}
+			]
+		}
+	},
 	"styles": [
 		"skins.minerva.base.reset",
 		"skins.minerva.base.styles",
@@ -6,6 +26,7 @@
 		"skins.minerva.tablet.styles",
 		"mediawiki.ui.icon",
 		"mediawiki.ui.button",
+		"oojs-ui.styles",
 		"skins.minerva.icons.images"
 	],
 	"scripts": [

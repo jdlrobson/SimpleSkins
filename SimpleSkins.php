@@ -43,6 +43,24 @@ $wgSFResourceBoilerplate = array(
 
 $wgSimpleSkinDefault = 'Dali';
 
+$wgSimpleSkinMenu = array(
+	'primary' =>array(
+		'home' => 'Main page',
+		'recentchanges' => 'Special:RecentChanges',
+		'random' => 'Special:Random',
+	),
+	'personal' => array(
+		'userpage' => array( false, 'User:$1' ),
+		'notifications' => array( false, 'Special:Notifications' ),
+		'mytalk' => array( false, 'User talk:$1' ),
+		'preferences' => array( false, 'User talk:$1' ),
+		'watchlist' => array( false, 'Special:Watchlist' ),
+		'mycontribs' => array( false, 'Special:Contributions:$1' ),
+		'logout' => array( 'Special:Userlogin', 'Special:Userlogout' ),
+		'signup' => array( 'Special:UserLogin/signup', false ),
+	),
+);
+
 $wgHooks['OutputPageParserOutput'][] = 'SimpleSkinsHooks::onOutputPageParserOutput';
 $wgHooks['SetupAfterCache'][] = 'SimpleSkinsHooks::onSetupAfterCache';
 $wgHooks['ResourceLoaderRegisterModules'][] = 'SimpleSkinsHooks::onResourceLoaderRegisterModules';

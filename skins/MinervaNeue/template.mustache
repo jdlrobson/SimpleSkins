@@ -6,14 +6,19 @@
 			<ul>
 				{{#menu.primary}}
 				<li class="{{class}}">
-					<a href="{{href}}" class="{{class}}">{{text}}</a>
+					<a href="{{href}}" class="{{class}}">{{{icon}}}{{text}}</a>
 				</li>
 				{{/menu.primary}}
 			</ul>
 			<ul>
 				{{#menu.personal}}
 				<li class="{{class}}">
-					<a href="{{href}}" class="{{class}}">{{text}}</a>
+					{{^links}}
+					<a href="{{href}}" class="{{class}}">{{{icon}}}{{text}}</a>
+					{{/links}}
+					{{#links}}
+					<a href="{{href}}" class="{{class}} linked-action truncated-text">{{{icon}}}<span class="text">{{text}}<span></a>
+					{{/links}}
 				</li>
 				{{/menu.personal}}
 			</ul>
