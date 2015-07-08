@@ -117,27 +117,15 @@
 	</div>
 	<div class="portal" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
 		<h3>{{messages.navigation}}</h3>
-		<div class="body">
-			<ul>
-				{{#menu.primary}}
-				<li id="{{id}}">
-					<a href="{{href}}" class="{{class}}">{{text}}</a>
-				</li>
-				{{/menu.primary}}
-			</ul>
-		</div>
+		{{#menu.primary}}
+		{{>portalBody}}
+		{{/menu.primary}}
 	</div>
 	<div class="portal" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
 		<h3 id="p-tb-label">{{messages.toolbox}}</h3>
-		<div class="body">
-			<ul>
-				{{#menu.toolbox}}
-				<li>
-					<a href="{{href}}" class="{{class}}">{{text}}</a>
-				</li>
-				{{/menu.toolbox}}
-			</ul>
-		</div>
+		{{#menu.toolbox}}
+		{{>portalBody}}
+		{{/menu.toolbox}}
 	</div>
 	{{#page.languages}}
 	<div class="portal" role="navigation" id="p-lang" aria-labelledby="p-lang-label">
