@@ -90,15 +90,11 @@ class SimpleSkinTemplate extends BaseTemplate {
 	 *
 	 * @access private
 	 */
-	function execute() {
+	function getTemplateParserData() {
 		$sk = $this->getSkin();
-		$out = $sk->getOutput();
-		$name = $sk->getSimpleSkinName();
-
-		$path = __DIR__ . "/../skins/$name";
-		$templateParser = new TemplateParser( $path );
 		$data = $this->data;
 		$tdata = $sk->getSimpleConfig();
+		$out = $sk->getOutput();
 
 		$msgObj = array();
 		if ( isset( $tdata['messages'] ) ) {
@@ -261,7 +257,25 @@ class SimpleSkinTemplate extends BaseTemplate {
 		foreach( $actions as $key => $action ) {
 			$tdata[$key] = $action;
 		}
+		return $tdata;
+	}
 
+	/**
+	 * Template filter callback for Minerva skin.
+	 * Takes an associative array of data set from a SkinTemplate-based
+	 * class, and a wrapper for MediaWiki's localization database, and
+	 * outputs a formatted page.
+	 *
+	 * @access private
+	 */
+	function execute() {
+		$sk = $this->getSkin();
+		$out = $sk->getOutput();
+		$name = $sk->getSimpleSkinName();
+
+		$path = __DIR__ . "/../skins/$name";
+		$templateParser = new TemplateParser( $path );
+		$tdata = $this->getTemplateParserData();
 		echo $templateParser->processTemplate( "template", $tdata );
 	}
 }
