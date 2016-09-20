@@ -1,0 +1,51 @@
+{
+	"name": "SimpleSkins",
+	"version": "1.0.0",
+	"author": [
+		"Jon Robson"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:SimpleSkins",
+	"descriptionmsg": "ext-simple-skin-desc",
+	"license-name": "GPL-2.0+",
+	"type": "other",
+	"require": {
+		"MediaWiki": ">= 1.27.0"
+	},
+	"ConfigRegistry": {
+		"simpleskins": "GlobalVarConfig::newInstance"
+	},
+	"SpecialPages": {},
+	"MessagesDirs": {
+		"SimpleSkins": [
+			"i18n"
+		]
+	},
+	"AutoloadClasses": {
+		"SimpleSkinsHooks": "includes/SimpleSkins.hooks.php",
+		"SimpleSkin": "includes/SimpleSkin.php",
+		"SimpleSkinTemplate": "includes/SimpleSkinTemplate.php"
+	},
+	"ResourceModules": {},
+	"Hooks": {
+		"OutputPageParserOutput": [
+			"SimpleSkinsHooks::onOutputPageParserOutput"
+		],
+		"SetupAfterCache": [
+			"SimpleSkinsHooks::onSetupAfterCache"
+		],
+		"ResourceLoaderRegisterModules": [
+			"SimpleSkinsHooks::onResourceLoaderRegisterModules"
+		]
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "SimpleSkins"
+	},
+	"config": {
+		"SFResourceBoilerplate": {
+			"targets": [ "desktop", "mobile"]
+		},
+		"SimpleSkinDefault": "Dali"
+	},
+	"manifest_version": 1
+}
