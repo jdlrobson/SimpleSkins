@@ -50,6 +50,7 @@ class SimpleSkin extends SkinTemplate {
 	public function setSimpleSkinName( $name ) {
 		if ( $this->skinExists( $name ) ) {
 			$this->simpleSkin = $name;
+			$this->skinname = $name;
 		}
 	}
 
