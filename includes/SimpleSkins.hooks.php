@@ -90,7 +90,9 @@ class SimpleSkinsHooks {
 			if ( !$fileinfo->isDot() && $fileinfo->isDir() ) {
 				$skinName = $fileinfo->getFilename();
 				$skinKey = strtolower( $skinName );
-				if ( !isset( $wgValidSkinNames[$skinKey] ) ) {
+				if ( file_exists( $fileinfo->getPath() . '/' . $skinName . '/template.mustache' ) &&
+					!isset( $wgValidSkinNames[$skinKey] )
+				) {
 					$factory->register( $skinKey, $skinName, function () use ( $skinKey ) {
 						$skin = new SimpleSkin( $skinKey );
 						$skin->setSimpleSkinName( $skinKey );
