@@ -167,6 +167,9 @@ class SimpleSkinTemplate extends BaseTemplate {
 			'dir' => $pageLanguage->getDir(),
 		);
 		$tdata = array_merge( $actions, array(
+			'skin' => [
+				'name' => $sk->getSkinName(),
+			],
 			'page' => array(
 				'indicators' => $this->getIndicators(),
 				'isArticle' => $out->isArticle(),
@@ -274,8 +277,18 @@ class SimpleSkinTemplate extends BaseTemplate {
 		$name = $sk->getSimpleSkinName();
 
 		$path = __DIR__ . "/../skins/$name";
-		$templateParser = new TemplateParser( $path );
 		$tdata = $this->getTemplateParserData();
-		echo $templateParser->processTemplate( "template", $tdata );
+
+		$templateParser = new TemplateParser( $path );
+		try {
+			echo $templateParser->processTemplate( "template", $tdata );
+		} catch ( Exception $e ) {
+			$templateParser = new TemplateParser( __DIR__ . "/../skins/" );
+			$tdata['page']['html'] = Html::openElement( 'div', [ 'class' => 'errorbox'] ) .
+				wfMessage( 'ext-simple-skin-error-loading', $tdata['skin']['name'] )->parse() .
+				Html::closeElement( 'div' ) .
+				$tdata['page']['html'];
+			echo $templateParser->processTemplate( "error", $tdata );
+		}
 	}
 }

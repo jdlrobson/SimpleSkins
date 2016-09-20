@@ -1,3 +1,4 @@
 {
-	"ext-simple-skin-desc": "An extension that empowers designers to make skins."
+	"ext-simple-skin-desc": "An extension that empowers designers to make skins.",
+	"ext-simple-skin-error-loading": "There was a problem loading the `$1` skin via the SimpleSkin extension.\n\nIt is likely that the template file for this skin has an issue.\n\nPlease share this url with an administrator for debugging purposes."
 }

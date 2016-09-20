@@ -1,3 +1,4 @@
 {
-	"ext-simple-skin-desc": "Description of the extension and its purpose"
+	"ext-simple-skin-desc": "Description of the extension and its purpose",
+	"ext-simple-skin-error-loading": "Error that shows when there is a problem with the skin template file."
 }
