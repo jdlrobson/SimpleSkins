@@ -23,7 +23,7 @@ class SimpleSkinsHooks {
 
 		if ( !$legacy ) {
 			$out->setProperty( 'simple-skin-toc', $po->getTOCHTML() );
-			$out->enableTOC( false );
+			$po->setTOCEnabled( false );
 		}
 	}
 
