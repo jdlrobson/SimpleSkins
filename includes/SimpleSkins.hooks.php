@@ -61,20 +61,23 @@ class SimpleSkinsHooks {
 	 * @return bool Always true
 	 */
 	public static function onResourceLoaderRegisterModules( ResourceLoader &$resourceLoader ) {
-		global $wgSFResourceBoilerplate;
+		$boilerplate = [
+			'localBasePath' => dirname( __DIR__ ),
+			'remoteExtPath' => 'SimpleSkins',
+		];
 		$dir = new DirectoryIterator( dirname( __FILE__ ) . '/../skins/' );
 		foreach ( $dir as $fileinfo ) {
 			if ( !$fileinfo->isDot() && $fileinfo->isDir() ) {
 				$name = strtolower( $fileinfo->getFilename() );
 				$rlModule = array(
-					"skins.bacadabra.$name.styles" => $wgSFResourceBoilerplate + array(
+					"skins.bacadabra.$name.styles" => $boilerplate + [
 						'position' => 'top',
 						'styles' => self::getFiles( $name, 'styles', 'styles.less' ),
-					),
-					"skins.bacadabra.$name.scripts" => $wgSFResourceBoilerplate + array(
+					],
+					"skins.bacadabra.$name.scripts" => $boilerplate + [
 						'position' => 'top',
 						'scripts' => self::getFiles( $name, 'scripts', 'init.js' ),
-					),
+					],
 				);
 				$resourceLoader->register( $rlModule );
 			}
